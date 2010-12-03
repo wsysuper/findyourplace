@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" 
+
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<include file="struts-default.xml" />
+	<!-- 此constant设置临时文件存放目录，因为默认的default.properties中没有指定 -->
+	<constant name="struts.multipart.saveDir" value="c:\"></constant>
+	<!-- 将action托管给spring -->
+	<constant name="struts.objectFactory" value="spring" />
+	<package name="code" extends="struts-default">
+		<action name="login" class="LoginActionBean">
+            <result name="success">/com/ask_question.jsp</result>
+            <result name="input">/com/login.jsp</result>
+        </action>
+        <action name="askquestion" class="QuestionActionBean">
+            <result name="success">/com/question_main.jsp</result>
+            <result name="input">/com/ask_question.jsp</result>
+        </action>
+	</package>
+</struts>
+
