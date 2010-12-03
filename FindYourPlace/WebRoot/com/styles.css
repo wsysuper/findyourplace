@@ -1,0 +1,19 @@
+@CHARSET "UTF-8";
+login {
+		color: #000000;
+		font-size: 11px;
+		font-family: "楷体","宋体";
+		letter-spacing: 3px;
+		background: none;
+		margin-bottom: 0px;
+		margin-left: 0px;
+		margin-right: 0px;
+		margin-top: 0px;
+		margin-bottom: 3px;
+		text-decoration: none;
+		line-height: 14px;
+		display: compact;
+		padding: 0px;
+		background-image:url(/lotus.jpg);
+		background-color: #00ff00;
+}
