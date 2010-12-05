@@ -16,11 +16,12 @@
 	</head>
 
 	<body class="main">
-        <s:label value="欢迎，"/><s:property value = "user.userName"/><br>
-		<s:form action="askquestion">
-			<s:textfield name="question.title" label="标题" />
-			<s:textarea name="question.content" label="内容" cols="50" rows="6" />
-			<s:reset value="清空" />
+        <s:label value="欢迎，"/><s:property value = "#session.user.userName"/><br>
+        <s:hidden name="keyWords" value="#session.key"/>
+		<s:form action="submitquestion">
+			<s:textfield name="question.title" label="问题" value="%{keyWords}"/>
+			<s:textarea name="question.content" label="详细描述" cols="50" rows="6" />
+			<s:reset value="重置"/>
 			<s:submit value="提交" ></s:submit>
 		</s:form></body>
 </html>

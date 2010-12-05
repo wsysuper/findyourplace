@@ -11,10 +11,13 @@
 	<constant name="struts.objectFactory" value="spring" />
 	<package name="code" extends="struts-default">
 		<action name="login" class="LoginActionBean">
-            <result name="success">/com/ask_question.jsp</result>
+            <result name="success">/com/main.jsp</result>
             <result name="input">/com/login.jsp</result>
         </action>
-        <action name="askquestion" class="QuestionActionBean">
+        <action name="askquestion" class="QuestionActionBean" method="askQuestion">
+        <result name="success">/com/ask_question.jsp</result>
+        </action>
+        <action name="submitquestion" class="QuestionActionBean" method="submitQuestion">
             <result name="success">/com/question_main.jsp</result>
             <result name="input">/com/ask_question.jsp</result>
         </action>
