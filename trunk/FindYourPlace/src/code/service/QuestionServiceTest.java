@@ -17,7 +17,7 @@ public class QuestionServiceTest extends TestCase {
 		super.setUp();
 		qs = (QuestionService)context.getBean("QuestionServiceProxy");
 		user = new User();
-		user.setUserName(null);
+		user.setUserName("bol");
 		question = new Question();
 		question.setTitle("why");
 		question.setContent("试试看中文~~");
