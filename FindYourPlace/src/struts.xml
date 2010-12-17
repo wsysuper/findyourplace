@@ -21,6 +21,10 @@
             <result name="success">/com/question_main.jsp</result>
             <result name="input">/com/ask_question.jsp</result>
         </action>
+        <action name="search" class="SearchActionBean">
+        	<result name="success">/com/search_result.jsp</result>
+        	<result name="input">/com/searchFail.jsp</result>
+        </action>
 	</package>
 </struts>
 

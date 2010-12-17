@@ -73,6 +73,11 @@
 			<ref bean="QuestionDao" />
 		</property>
 	</bean>
+	<bean id="SearchService" class="code.service.impl.SearchServiceImpl">
+		<property name="questionDao">
+			<ref bean="QuestionDao" />
+		</property>
+	</bean>
 
 	<!--ServiceProxy-->
 	<bean id="LoginServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
@@ -92,6 +97,15 @@
 			</list>
 		</property>
 	</bean>
+	
+	<bean id="SearchServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="SearchService" />
+		<property name="interceptorNames">
+			<list>
+				<value>transactionInterceptor</value>
+			</list>
+		</property>
+	</bean>
 
 	<!--Action-->
 	<bean name="LoginActionBean" class="code.action.LoginAction"
@@ -105,6 +119,12 @@
 		scope="prototype">
 		<property name="questionService">
 			<ref bean="QuestionServiceProxy" />
+		</property>
+	</bean>
+	<bean name="SearchActionBean" class="code.action.SearchAction"
+		scope="prototype">
+		<property name="searchService">
+			<ref bean="SearchServiceProxy" />
 		</property>
 	</bean>
 </beans>
