@@ -35,7 +35,7 @@
 		<s:form action="submitquestion">
 			<!--搜索做好后action应为搜索的action名-->
 			<s:textfield name="keyWords" />
-			<s:submit value="搜索" />
+			<s:submit value="搜索" action="search"/>
 			<s:submit value="我要提问" action="askquestion" />
 		</s:form>
 		<br>

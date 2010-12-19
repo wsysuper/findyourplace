@@ -23,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-		<s:form action="search">
+		<s:form action="submitsearch">
 			<s:textfield name="content" label="搜索" />
 			<s:radio list="#{'0':'模糊','1':'精确'}" name="searchType" theme="simple"/>
 			

@@ -109,9 +109,11 @@ public class SearchAction extends ActionSupport{
 	}
 
 
+	public String search(){
+		return SUCCESS;
+	}
 
-
-	public String execute(){
+	public String submitSearch(){
 		System.out.println("in execute");
 		//HttpSession session = ServletActionContext.getRequest().getSession();
 		searchService.setSearchType(searchType);
