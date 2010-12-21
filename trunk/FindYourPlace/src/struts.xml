@@ -28,6 +28,18 @@
         	<result name="success">/com/search_result.jsp</result>
         	<result name="input">/com/searchFail.jsp</result>
         </action>
+        <action name="upload" class="UploadActionBean">
+        <interceptor-ref name ="fileUploadStack">
+        <param name ="allowedTypes" >
+                     image/bmp,image/png,image/gif,image/jpg
+                 </param >
+             </interceptor-ref >
+             <interceptor-ref name ="defaultStack" />
+        
+			<!-- 配置Struts2默认的视图页面 -->
+   			<result name="success">/com/uploadsucc.jsp</result> 
+   			<result name="input">/com/upload.jsp</result>
+        </action>
 	</package>
 </struts>
 

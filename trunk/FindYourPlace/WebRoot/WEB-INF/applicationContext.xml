@@ -127,4 +127,7 @@
 			<ref bean="SearchServiceProxy" />
 		</property>
 	</bean>
+	<bean name="UploadActionBean" class="code.action.UploadAction"
+		scope="prototype">
+	</bean>
 </beans>
