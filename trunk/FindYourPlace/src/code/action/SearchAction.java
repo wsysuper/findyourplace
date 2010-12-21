@@ -118,9 +118,9 @@ public class SearchAction extends ActionSupport{
 		//HttpSession session = ServletActionContext.getRequest().getSession();
 		searchService.setSearchType(searchType);
 		System.out.println("SearchAction "+content);
-		List list = searchService.getResultQuestionList(content);
+		resultQuestionList = searchService.getResultQuestionList(content);
 		
-		resultQuestionNum = list.size();
+		resultQuestionNum = resultQuestionList.size();
 		if(resultQuestionNum == 0)
 			return INPUT;
 		else
