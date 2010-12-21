@@ -21,8 +21,8 @@
 		<s:form action="submitquestion" method = "POST" enctype="multipart/form-data">
 			<s:textfield name="question.title" label="问题" value="%{keyWords}"/>
 			<s:textarea name="question.content" label="详细描述" cols="50" rows="6" />			
-   			<s:file name="upload" label="Image File"/>
-  			<s:textfield name="caption" label="Caption"/>
+   			<s:file name="upload" label="上传图片"/>
+  			<s:textfield name="caption" label="图片名"/>
 			<s:reset value="重置"/>
 			<s:submit value="提交" ></s:submit>
 		</s:form></body>
