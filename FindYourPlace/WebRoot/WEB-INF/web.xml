@@ -36,6 +36,17 @@
 		<filter-name>struts2</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	<!-- 配置Struts2的CleanUp的Filter -->
+     <filter>
+         <filter-name>struts-cleanup</filter-name>
+         <filter-class>org.apache.struts2.dispatcher.ActionContextCleanUp</filter-class>
+     </filter>
+	<!-- 定义Struts2的CleanUp Filter拦截的URL -->
+     <filter-mapping>
+         <filter-name>struts-cleanup</filter-name>
+         <url-pattern>/*</url-pattern>
+     </filter-mapping>
+	
 	<!-- 监听器 -->
 	<welcome-file-list>
 		<welcome-file>/com/login.jsp</welcome-file>

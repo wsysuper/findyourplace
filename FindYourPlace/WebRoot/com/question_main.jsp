@@ -1,4 +1,4 @@
-﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+﻿<%@ page language="java" import="java.util.*" contentType = " text/html; charset=utf-8 " pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -31,5 +31,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <s:property value="question.user.userName"/><br>
   <s:label value="提问日期："/>
   <s:property value="question.pubDate"/><br>
+  <div style ="padding: 3px; border: solid 1px #cccccc; text-align: center" >
+  <img src ="UploadImages/<s:property value ="fileName" />" />
+  <br/>
+  <s:property value ="caption" />
+  </div >
   </body>
 </html>
