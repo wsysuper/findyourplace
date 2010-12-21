@@ -171,6 +171,7 @@ public class AskQuestionAction extends ActionSupport {
 		File imageFile = new File(ServletActionContext.getServletContext().getRealPath( "/UploadImages" ) + "\\" + fileName);
 		 copy(upload, imageFile);
 		HttpSession session = ServletActionContext.getRequest().getSession();
+		question.setPictureURL(fileName);
 		user = (User) session.getAttribute("user");
 		if (questionService.addQuestion(question, user))
 			return SUCCESS;
