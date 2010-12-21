@@ -17,7 +17,7 @@ public class QuestionDaoHibernate extends HibernateDaoSupport implements Questio
 	
 	public List getPreFoundQuestionList(String content){
 		Criteria criteria = this.getHibernateTemplate().getSessionFactory().openSession().createCriteria(Question.class);
-		criteria.add(Restrictions.like("content", "'%"+content+"%'"));
+		criteria.add(Restrictions.like("content", "%"+content+"%"));
 		criteria.setMaxResults(20);
 		if(criteria == null)
 			return null;
