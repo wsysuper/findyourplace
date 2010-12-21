@@ -36,7 +36,7 @@ public class SearchServiceImpl implements SearchService{
 			searchStrategy = (SearchStrategy) new BlurSearchStrategy(this.questionDao);
 			break;
 		case 1:
-			searchStrategy = (SearchStrategy) new PreciseSearchStrategy();
+			searchStrategy = (SearchStrategy) new PreciseSearchStrategy(this.questionDao);
 			break;
 		default:
 			break;

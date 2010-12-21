@@ -27,7 +27,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	<table>
 	<struts:iterator id="question" value="resultList">
 		<tr>
-			<td><a href="showinfo.action?bookid=<struts:property value="%{#book.bid}"/>">${question.title}</a></td>	
 			<s:label value="问题"/>
 			<s:property value="question.title"/><br>
 			<s:label value="问题描述："/>
