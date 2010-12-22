@@ -32,25 +32,19 @@ public class AskQuestionAction extends ActionSupport {
 	private Question question;
 	private User user;
 	private QuestionService questionService;
+	
+	// 如果提交问题失败，显示失败原因
+	private String result;
 
-	//upload image 
+	// 上传图片
 	private static final int BUFFER_SIZE = 16 * 1024 ;
 
-
-	private String caption;
 	private File upload;
 	private String uploadContentType;
 	private String fileName;
 	private String savePath;
+	//上传图片的源文件名
 	private String uploadFileName;
-	
-	public String getCaption() {
-		return caption;
-	}
-
-	public void setCaption(String caption) {
-		this.caption = caption;
-	}
 
 	public File getUpload() {
 		return upload;
@@ -116,6 +110,14 @@ public class AskQuestionAction extends ActionSupport {
 		this.questionService = questionService;
 	}
 
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
+	}
+
 	public void validate() {
 		//仅在提交问题时进行validate
 		if (question != null) {
@@ -127,8 +129,43 @@ public class AskQuestionAction extends ActionSupport {
 					|| question.getContent().trim().equals("")) {
 				addFieldError("question.content", getText("qcontent.required"));
 			}
+			if (question.getReward() < 0) addFieldError("question.reward",getText("qreward.error"));
 		}
 	}
+	
+	
+	//得到关键字，进入提问页面
+	public String askQuestion() {
+		return SUCCESS;
+	}
+	
+	//提交问题
+	public String submitQuestion() {
+		
+		//如果要进行文件上传
+		if (this.getUploadFileName() != null) {
+			fileName = new Date().getTime() + getExtention(this.getUploadFileName());
+			File imageFile = new File(ServletActionContext.getServletContext().getRealPath( "/UploadImages" ) + "\\" + fileName);
+				copy(upload, imageFile);
+				question.setPictureURL(fileName);
+		}
+	
+		HttpSession session = ServletActionContext.getRequest().getSession();
+		user = new User();
+		user.setUserName((String)session.getAttribute("user"));
+		switch (questionService.addQuestion(question, user)) {
+		case 0: return SUCCESS;
+		case 1: {
+			result = getText("qnopoint.error");
+			return INPUT;
+		}
+		default: {
+			result = getText("qfail.error");
+			return INPUT;
+		}
+		}
+	}
+	
 	private static void copy(File src, File dst)  {
         try  {
            InputStream in = null ;
@@ -153,32 +190,10 @@ public class AskQuestionAction extends ActionSupport {
        }
    }
 
+	//得到上传文件的扩展名
     private static String getExtention(String fileName)  {
     	System.out.println(fileName);
         int pos = fileName.lastIndexOf( "." );
         return fileName.substring(pos);
    }
-	
-	//得到关键字，进入提问页面
-	public String askQuestion() {
-		
-		return SUCCESS;
-	}
-	
-	//提交问题
-	public String submitQuestion() {
-		fileName = new Date().getTime() + getExtention(this.getUploadFileName());
-		File imageFile = new File(ServletActionContext.getServletContext().getRealPath( "/UploadImages" ) + "\\" + fileName);
-		 copy(upload, imageFile);
-		HttpSession session = ServletActionContext.getRequest().getSession();
-		question.setPictureURL(fileName);
-		System.out.print("question type: ");
-		System.out.println(question.getType());
-		user = new User();
-		user.setUserName((String)session.getAttribute("user"));
-		if (questionService.addQuestion(question, user))
-			return SUCCESS;
-		else
-			return INPUT;
-	}
 }
