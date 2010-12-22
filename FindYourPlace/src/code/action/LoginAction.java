@@ -42,7 +42,7 @@ public class LoginAction extends ActionSupport {
 		switch(result){
 		case 0:{ 
 			//用户登录成功
-			session.setAttribute("user", user);
+			session.setAttribute("user", user.getUserName());
 			return SUCCESS;
 		}
 		case 1:{
