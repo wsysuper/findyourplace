@@ -44,6 +44,8 @@
 		<property name="transactionAttributes">
 			<props>
 				<prop key="add*">PROPAGATION_REQUIRED</prop>
+				<prop key="deductPoint">PROPAGATION_REQUIRED</prop>
+				<prop key="payReward">PROPAGATION_REQUIRED</prop>
 			</props>
 		</property>
 	</bean>
@@ -72,7 +74,11 @@
 		<property name="questionDao">
 			<ref bean="QuestionDao" />
 		</property>
+		<property name="userDao">
+			<ref bean="UserDao" />
+		</property>
 	</bean>
+	
 	<bean id="SearchService" class="code.service.impl.SearchServiceImpl">
 		<property name="questionDao">
 			<ref bean="QuestionDao" />
@@ -126,8 +132,5 @@
 		<property name="searchService">
 			<ref bean="SearchServiceProxy" />
 		</property>
-	</bean>
-	<bean name="UploadActionBean" class="code.action.UploadAction"
-		scope="prototype">
 	</bean>
 </beans>

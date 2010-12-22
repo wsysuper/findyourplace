@@ -11,38 +11,27 @@
 	<constant name="struts.objectFactory" value="spring" />
 	<package name="code" extends="struts-default">
 		<action name="login" class="LoginActionBean">
-            <result name="success">/com/main.jsp</result>
-            <result name="input">/com/login.jsp</result>
-        </action>
-        <action name="askquestion" class="QuestionActionBean" method="askQuestion">
-        <result name="success">/com/ask_question.jsp</result>
-        </action>
-        <action name="submitquestion" class="QuestionActionBean" method="submitQuestion">
-            <result name="success">/com/question_main.jsp</result>
-            <result name="input">/com/ask_question.jsp</result>
-        </action>
-        <action name="search" class="SearchActionBean" method="search">
-        <result name="success">/com/search.jsp</result>
-        </action>
-        <action name="submitsearch" class="SearchActionBean" method="submitSearch">
-        	<result name="success">/com/search_result.jsp</result>
-        	<result name="input">/com/searchFail.jsp</result>
-        </action>
-        <action name="turnPage" class="SearchActionBean" method="turnPage">
-        	<result name="success">/com/search_result.jsp</result>
-        </action>
-        <action name="upload" class="UploadActionBean">
-        <interceptor-ref name ="fileUploadStack">
-        <param name ="allowedTypes" >
-                     image/bmp,image/png,image/gif,image/jpg
-                 </param >
-             </interceptor-ref >
-             <interceptor-ref name ="defaultStack" />
-        
-			<!-- 配置Struts2默认的视图页面 -->
-   			<result name="success">/com/uploadsucc.jsp</result> 
-   			<result name="input">/com/upload.jsp</result>
-        </action>
+			<result name="success">/com/main.jsp</result>
+			<result name="input">/com/login.jsp</result>
+		</action>
+		<action name="askquestion" class="QuestionActionBean" method="askQuestion">
+			<result name="success">/com/ask_question.jsp</result>
+		</action>
+		<action name="submitquestion" class="QuestionActionBean"
+			method="submitQuestion">
+			<result name="success">/com/question_main.jsp</result>
+			<result name="input">/com/ask_question.jsp</result>
+		</action>
+		<action name="search" class="SearchActionBean" method="search">
+			<result name="success">/com/search.jsp</result>
+		</action>
+		<action name="submitsearch" class="SearchActionBean" method="submitSearch">
+			<result name="success">/com/search_result.jsp</result>
+			<result name="input">/com/searchFail.jsp</result>
+		</action>
+		<action name="turnPage" class="SearchActionBean" method="turnPage">
+			<result name="success">/com/search_result.jsp</result>
+		</action>
 	</package>
 </struts>
 

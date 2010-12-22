@@ -33,20 +33,23 @@
 		<s:property value="question.content" />
 		<br>
 		<s:label value="问题类型：" />
-		<s:text name="%{'questionType.'+question.type}"/>
+		<s:text name="%{'questionType.'+question.type}" />
 		<br>
-
+		<s:label value="积分悬赏：" />
+		<s:property value="question.reward" />
+		<br>
 		<s:label value="提问人：" />
 		<s:property value="question.user.userName" />
 		<br>
 		<s:label value="提问日期：" />
 		<s:property value="question.pubDate" />
 		<br>
+		<s:if test="%{question.pictureURL!=null}">
 		<div
 			style="padding: 3px; border: solid 1px #cccccc; text-align: center">
-			<img src="UploadImages/<s:property value ="fileName" />" />
+			<img src="UploadImages/<s:property value ="question.pictureURL" />" />
 			<br />
-			<s:property value="caption" />
 		</div>
+		</s:if>
 	</body>
 </html>
