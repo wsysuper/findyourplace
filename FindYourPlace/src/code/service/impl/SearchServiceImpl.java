@@ -21,7 +21,7 @@ public class SearchServiceImpl implements SearchService{
 		return searchStrategy.getResultQuestionList(content);
 		
 	}
-	public List<List<Answer>> getResultAnswerList(List<Question> questionList){
+	public List<Answer> getResultAnswerList(int questionId){
 		return null;
 	}
 	public int getResultQuestionNum(){
