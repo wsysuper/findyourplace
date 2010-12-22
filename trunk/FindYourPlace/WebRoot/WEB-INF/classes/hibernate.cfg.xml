@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver">
+		</property>
+		<property name="url" value="jdbc:mysql://localhost:3306/findyourplace">
+		</property>
+		<property name="username" value="public"></property>
+		<property name="password" value="public"></property>
+	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>code/model/User.hbm.xml</value>
+				<value>code/model/Question.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="transactionInterceptor"
+		class="org.springframework.transaction.interceptor.TransactionInterceptor">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="transactionAttributes">
+			<props>
+				<prop key="add*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!--DAO-->
+	<bean id="UserDao" class="code.dao.hibernate.UserDaoHibernate">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="QuestionDao" class="code.dao.hibernate.QuestionDaoHibernate">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+	<!--Service-->
+	<bean id="LoginService" class="code.service.impl.LoginServiceImpl">
+		<property name="userDao">
+			<ref bean="UserDao" />
+		</property>
+	</bean>
+
+	<bean id="QuestionService" class="code.service.impl.QuestionServiceImpl">
+		<property name="questionDao">
+			<ref bean="QuestionDao" />
+		</property>
+	</bean>
+	<bean id="SearchService" class="code.service.impl.SearchServiceImpl">
+		<property name="questionDao">
+			<ref bean="QuestionDao" />
+		</property>
+	</bean>
+
+	<!--ServiceProxy-->
+	<bean id="LoginServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="LoginService" />
+		<property name="interceptorNames">
+			<list>
+				<value>transactionInterceptor</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="QuestionServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="QuestionService" />
+		<property name="interceptorNames">
+			<list>
+				<value>transactionInterceptor</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="SearchServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="SearchService" />
+		<property name="interceptorNames">
+			<list>
+				<value>transactionInterceptor</value>
+			</list>
+		</property>
+	</bean>
+
+	<!--Action-->
+	<bean name="LoginActionBean" class="code.action.LoginAction"
+		scope="prototype">
+		<property name="loginService">
+			<ref bean="LoginServiceProxy" />
+		</property>
+	</bean>
+
+	<bean name="QuestionActionBean" class="code.action.AskQuestionAction"
+		scope="prototype">
+		<property name="questionService">
+			<ref bean="QuestionServiceProxy" />
+		</property>
+	</bean>
+	<bean name="SearchActionBean" class="code.action.SearchAction"
+		scope="prototype">
+		<property name="searchService">
+			<ref bean="SearchServiceProxy" />
+		</property>
+	</bean>
+</beans>
