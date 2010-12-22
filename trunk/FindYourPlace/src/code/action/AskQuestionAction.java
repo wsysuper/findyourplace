@@ -34,7 +34,7 @@ public class AskQuestionAction extends ActionSupport {
 	private QuestionService questionService;
 
 	//upload image 
-	 private static final int BUFFER_SIZE = 16 * 1024 ;
+	private static final int BUFFER_SIZE = 16 * 1024 ;
 
 
 	private String caption;
@@ -172,6 +172,8 @@ public class AskQuestionAction extends ActionSupport {
 		 copy(upload, imageFile);
 		HttpSession session = ServletActionContext.getRequest().getSession();
 		question.setPictureURL(fileName);
+		System.out.print("question type: ");
+		System.out.println(question.getType());
 		user = new User();
 		user.setUserName((String)session.getAttribute("user"));
 		if (questionService.addQuestion(question, user))
