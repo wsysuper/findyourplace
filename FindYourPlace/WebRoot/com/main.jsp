@@ -32,7 +32,7 @@
 		<br>
 		<s:label value="Find Your Place" />
 		<br>
-		<s:form action="submitquestion">
+		<s:form action="search">
 			<!--搜索做好后action应为搜索的action名-->
 			<s:textfield name="keyWords" />
 			<s:submit value="搜索" action="search"/>

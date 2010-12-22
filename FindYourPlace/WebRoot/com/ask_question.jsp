@@ -20,7 +20,9 @@
         <s:hidden name="keyWords" value="#session.key"/>
 		<s:form action="submitquestion" method = "POST" enctype="multipart/form-data">
 			<s:textfield name="question.title" label="问题" value="%{keyWords}"/>
-			<s:textarea name="question.content" label="详细描述" cols="50" rows="6" />			
+			<s:textarea name="question.content" label="详细描述" cols="50" rows="6" />
+			<s:set name="questionTypes" value="#{'1':getText('questionType.1'),'2':getText('questionType.2'), '0':getText('questionType.0')}"/>
+			<s:select name="question.type" label="问题类型" list="questionTypes"/>	
    			<s:file name="upload" label="上传图片"/>
   			<s:textfield name="caption" label="图片名"/>
 			<s:reset value="重置"/>
