@@ -3,6 +3,39 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
 	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<!-- 单点登录及登出过滤器 -->
+	<listener>
+		<listener-class>org.jasig.cas.client.session.SingleSignOutHttpSessionListener</listener-class>
+	</listener>
+	<filter>
+		<filter-name>CAS Single Sign Out Filter</filter-name>
+		<filter-class>org.jasig.cas.client.session.SingleSignOutFilter</filter-class>
+	</filter>
+	<filter>
+		<filter-name>CAS Filter</filter-name>
+		<filter-class>edu.yale.its.tp.cas.client.filter.CASFilter</filter-class>
+		<init-param>
+			<param-name>edu.yale.its.tp.cas.client.filter.validateUrl</param-name>
+			<param-value>https://casserver:60462/cas/serviceValidate</param-value>
+		</init-param>
+		<init-param>
+			<param-name>edu.yale.its.tp.cas.client.filter.loginUrl</param-name>
+			<param-value>https://casserver:60462/cas/login</param-value>
+		</init-param>
+		<init-param>
+			<param-name>edu.yale.its.tp.cas.client.filter.serverName</param-name>
+			<param-value>localhost:8080</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>CAS Single Sign Out Filter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>CAS Filter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
 	<!-- spring的应用上下文 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -10,23 +43,19 @@
 	</context-param>
 	<!-- spring的监听器，以便在启动时就自动加载spring的配置 -->
 	<listener>
-		<listener-class>
-			org.springframework.web.context.ContextLoaderListener
-		</listener-class>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	<!-- OpenSessionInViewFilter过滤器 -->
 	<filter>
 		<filter-name>lazyLoadingFilter</filter-name>
 		<filter-class>
-			org.springframework.orm.hibernate3.support.OpenSessionInViewFilter
-		</filter-class>
+			org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
 	</filter>
 	<!-- struts2 过滤器 -->
 	<filter>
 		<filter-name>struts2</filter-name>
 		<filter-class>
-			org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter
-		</filter-class>
+			org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>lazyLoadingFilter</filter-name>
@@ -37,18 +66,17 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	<!-- 配置Struts2的CleanUp的Filter -->
-     <filter>
-         <filter-name>struts-cleanup</filter-name>
-         <filter-class>org.apache.struts2.dispatcher.ActionContextCleanUp</filter-class>
-     </filter>
+	<filter>
+		<filter-name>struts-cleanup</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.ActionContextCleanUp</filter-class>
+	</filter>
 	<!-- 定义Struts2的CleanUp Filter拦截的URL -->
-     <filter-mapping>
-         <filter-name>struts-cleanup</filter-name>
-         <url-pattern>/*</url-pattern>
-     </filter-mapping>
-	
-	<!-- 监听器 -->
+	<filter-mapping>
+		<filter-name>struts-cleanup</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
 	<welcome-file-list>
-		<welcome-file>/com/login.jsp</welcome-file>
+		<welcome-file>/com/main.jsp</welcome-file>
 	</welcome-file-list>
 </web-app>

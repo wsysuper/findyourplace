@@ -18,6 +18,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import code.model.Question;
 import code.model.User;
 import code.service.QuestionService;
+import edu.yale.its.tp.cas.client.filter.CASFilter;
 
 public class AskQuestionAction extends ActionSupport {
 	/**
@@ -152,7 +153,10 @@ public class AskQuestionAction extends ActionSupport {
 	
 		HttpSession session = ServletActionContext.getRequest().getSession();
 		user = new User();
-		user.setUserName((String)session.getAttribute("user"));
+		//单点登录已将用户名放到session中
+		user.setUserName((String)session.getAttribute(CASFilter.CAS_FILTER_USER));
+		//非单点登录得到用户名
+		//user.setUserName((String)session.getAttribute("user"));
 		switch (questionService.addQuestion(question, user)) {
 		case 0: return SUCCESS;
 		case 1: {

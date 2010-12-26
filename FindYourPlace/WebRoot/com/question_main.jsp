@@ -26,6 +26,10 @@
 	</head>
 
 	<body class="main">
+		<s:a href="https://casserver:60462/cas/logout">退出</s:a>
+		<br>
+		<s:a href="/FindYourPlace/com/main.jsp">返回主页</s:a>
+		<br>
 		<s:label value="问题：" />
 		<s:property value="question.title" />
 		<br>
@@ -45,11 +49,11 @@
 		<s:property value="question.pubDate" />
 		<br>
 		<s:if test="%{question.pictureURL!=null}">
-		<div
-			style="padding: 3px; border: solid 1px #cccccc; text-align: center">
-			<img src="UploadImages/<s:property value ="question.pictureURL" />" />
-			<br />
-		</div>
+			<div
+				style="padding: 3px; border: solid 1px #cccccc; text-align: center">
+				<img src="UploadImages/<s:property value ="question.pictureURL" />" />
+				<br />
+			</div>
 		</s:if>
 	</body>
 </html>
