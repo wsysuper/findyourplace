@@ -16,7 +16,11 @@
 	</head>
 
 	<body class="main">
-        <s:label value="欢迎，"/><s:property value = "#session.user"/><br>
+        <s:label value="欢迎，"/>
+        <!-- 原显示用户名 -->
+		<!-- <s:property value="#session.user"/> -->
+		${sessionScope["edu.yale.its.tp.cas.client.filter.user"]}
+		<br>
         <s:hidden name="keyWords" value="#session.key"/>
         <s:property value="result"/>
 		<s:form action="submitquestion" method = "POST" enctype="multipart/form-data">
