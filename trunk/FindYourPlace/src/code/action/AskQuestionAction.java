@@ -154,9 +154,9 @@ public class AskQuestionAction extends ActionSupport {
 		HttpSession session = ServletActionContext.getRequest().getSession();
 		user = new User();
 		//单点登录已将用户名放到session中
-		user.setUserName((String)session.getAttribute(CASFilter.CAS_FILTER_USER));
+		//user.setUserName((String)session.getAttribute(CASFilter.CAS_FILTER_USER));
 		//非单点登录得到用户名
-		//user.setUserName((String)session.getAttribute("user"));
+		user.setUserName((String)session.getAttribute("user"));
 		switch (questionService.addQuestion(question, user)) {
 		case 0: return SUCCESS;
 		case 1: {

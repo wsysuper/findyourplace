@@ -1,5 +1,4 @@
-﻿<%@ page language="java" import="java.util.*"
-	contentType=" text/html; charset=utf-8 " pageEncoding="UTF-8"%>
+﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -26,7 +25,7 @@
 	</head>
 
 	<body class="main">
-		<s:a href="https://casserver:60462/cas/logout">退出</s:a>
+		<!--<s:a href="https://casserver:60462/cas/logout">退出</s:a>-->
 		<br>
 		<s:a href="/FindYourPlace/com/main.jsp">返回主页</s:a>
 		<br>

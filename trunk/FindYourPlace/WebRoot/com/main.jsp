@@ -29,10 +29,10 @@
 		<br>
 		<s:label value="欢迎，" />
 		<!-- 原显示用户名 -->
-		<!-- <s:property value="#session.user"/> -->
-		${sessionScope["edu.yale.its.tp.cas.client.filter.user"]}
+		<s:property value="#session.user"/>
+		<!-- ${sessionScope["edu.yale.its.tp.cas.client.filter.user"]}-->
 		<br>
-		<s:a href="https://casserver:60462/cas/logout">退出</s:a>
+		<!--<s:a href="https://casserver:60462/cas/logout">退出</s:a>-->
 		<br>
 		<s:label value="Find Your Place" />
 		<br>
