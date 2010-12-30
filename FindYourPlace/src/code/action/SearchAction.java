@@ -2,22 +2,45 @@ package code.action;
 
 import java.util.List;
 
+import org.apache.struts2.ServletActionContext;
+
 import com.opensymphony.xwork2.ActionSupport;
 
 import code.model.*;
 import code.service.*;
+import code.service.factory.SearchEngineFactory;
 
 public class SearchAction extends ActionSupport{
 	private static final long serialVersionUID = 1L;
 
 	private List<Question> resultQuestionList;
 	private List<Answer> resultAnswerList;
-	private SearchService searchService;
 	private static String content;
 	private int searchType;
 	private int resultQuestionNum;
 	private int totalPage;
 	private int page;
+	private double lat;
+	private double lng;
+	private SearchService searchService;
+	public double getLat() {
+		return lat;
+	}
+	public void setLat(double lat) {
+		this.lat = lat;
+	}
+	public SearchService getSearchService() {
+		return searchService;
+	}
+	public void setSearchService(SearchService searchService) {
+		this.searchService = searchService;
+	}
+	public double getLng() {
+		return lng;
+	}
+	public void setLng(double lng) {
+		this.lng = lng;
+	}
 	private Question curQuestion;
 	public int getTotalPage() {
 		return totalPage;
@@ -67,12 +90,6 @@ public class SearchAction extends ActionSupport{
 	public void setResultQuestionNum(int resultQuestionNum) {
 		this.resultQuestionNum = resultQuestionNum;
 	}
-	public SearchService getSearchService() {
-		return searchService;
-	}
-	public void setSearchService(SearchService searchService) {
-		this.searchService = searchService;
-	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -81,14 +98,14 @@ public class SearchAction extends ActionSupport{
 	}
 	public String turnPage(){
 		System.out.println("in turnPage");
-		resultQuestionList = searchService.getResultQuestionList(content);
+		resultQuestionList = searchService.getWSResultQuestionList(content);
 		if(page == -1)
 			page = 0;
 		if(resultQuestionList.size() == 0)
 			System.out.println("the result q list is empty!");
 		totalPage = this.resultQuestionList.size();
 		curQuestion = this.getResultQuestionList().get(page);
-		resultAnswerList = searchService.getResultAnswerList(curQuestion.getQuestionID());
+		resultAnswerList = searchService.getWSResultAnswerList(curQuestion.getQuestionID());
 		return SUCCESS;
 		
 		
@@ -96,17 +113,26 @@ public class SearchAction extends ActionSupport{
 	public String submitSearch(){
 		System.out.println("in execute");
 		//HttpSession session = ServletActionContext.getRequest().getSession();
-		searchService.setSearchType(searchType);
+		searchService.setWordSearchType(searchType);
 		System.out.println("SearchAction "+content);
-		resultQuestionList = searchService.getResultQuestionList(content);
-		curQuestion = resultQuestionList.get(0);
-		resultAnswerList = searchService.getResultAnswerList(curQuestion.getQuestionID());
+		resultQuestionList = searchService.getWSResultQuestionList(content);
+		//curQuestion = resultQuestionList.get(0);
+		//resultAnswerList = searchService.getResultAnswerList(curQuestion.getQuestionID());
 		resultQuestionNum = resultQuestionList.size();
 		totalPage = resultQuestionNum;
 		if(resultQuestionNum == 0)
 			return INPUT;
 		else
 			return SUCCESS;
+	}
+	public String mapSearch(){
+		System.out.println("in map Search()");
+		lat = Double.valueOf((String) ServletActionContext.getRequest().getParameter("lat"));
+		lng = Double.valueOf((String) ServletActionContext.getRequest().getParameter("lng"));
+		System.out.print(lat);
+		System.out.print(lng);
+		resultQuestionList = searchService.getMSResultQuestionList(lat, lng);
+		return null;
 	}
 	
 

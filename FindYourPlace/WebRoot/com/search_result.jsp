@@ -26,25 +26,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
   <table border="1">
-	
+	<s:iterator id="qid" value="resultQuestionList">
 	<tr>
-		<td>问题:</td><td><s:property value="curQuestion.title"/></td>
+		<td>问题:</td><td><a href="searchAnswer?questionId=${qid.questionID}"><s:property value="title"/></a></td>
 	</tr>
 	<tr>		
-		<td>问题描述：</td><td><s:property value="curQuestion.content"/></td>
+		<td>问题描述：</td><td><s:property value="content"/></td>
 	</tr>
-	<tr>
-		<td>提问人：</td><td><s:property value="curQuestion.user.userName"/></td>
-	</tr>
-	<tr>
-		<td>提问日期：</td><td><s:property value="curQuestion.pubDate"/></td>	
-	</tr>
+<!--	<tr>-->
+<!--		<td>提问人：</td><td><s:property value="curQuestion.user.userName"/></td>-->
+<!--	</tr>-->
+<!--	<tr>-->
+<!--		<td>提问日期：</td><td><s:property value="curQuestion.pubDate"/></td>	-->
+<!--	</tr>-->
 	<tr>
 		<td></td><td><div style ="padding: 3px; border: solid 1px #cccccc; text-align: center" >
-  		<img src ="UploadImages/<s:property value ="curQuestion.pictureURL" />" />
+  		<img src ="UploadImages/<s:property value ="pictureURL" />" />
   		</div>
   		</td>
   	</tr>
+  	</s:iterator>
   	<s:iterator id="id" value="resultAnswerList">
 	</s:iterator>
 	</table>
