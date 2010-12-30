@@ -59,8 +59,11 @@ public class QuestionDaoHibernate extends HibernateDaoSupport implements Questio
 		return result;
 	}
 
-	public Question getQuestion(int questionId) {
+	public Question getQuestion(int questionID) {
 		// TODO Auto-generated method stub
-		return null;
+		List result = this.getHibernateTemplate().
+			find("from Question q where q.questionID = " + questionID);
+		if (result.size() == 0) return null;
+		else return (Question)result.get(0);
 	}
 }
