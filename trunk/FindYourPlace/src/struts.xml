@@ -29,9 +29,16 @@
 			<result name="success">/com/search_result.jsp</result>
 			<result name="input">/com/searchFail.jsp</result>
 		</action>
+		<action name="mapSearch" class="SearchActionBean" method="mapSearch">
+			<result name="input">/com/searchFail.jsp</result>
+		</action>
 		<action name="turnPage" class="SearchActionBean" method="turnPage">
 			<result name="success">/com/search_result.jsp</result>
 		</action>
+		<action name="searchAnswer" class="SearchAnswerActionBean">
+			<result name="success">/com/searchAnswer_result.jsp</result>
+		</action>
+		
 	</package>
 </struts>
 

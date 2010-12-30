@@ -58,4 +58,9 @@ public class QuestionDaoHibernate extends HibernateDaoSupport implements Questio
 			System.out.println("result set in hibernate is null\n");
 		return result;
 	}
+
+	public Question getQuestion(int questionId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
