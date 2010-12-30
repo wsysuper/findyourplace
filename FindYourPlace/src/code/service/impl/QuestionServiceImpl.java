@@ -46,4 +46,8 @@ public class QuestionServiceImpl implements QuestionService {
 			else return 1;
 		}
 	}
+	
+	public Question getQuestion(int questionID) {
+		return questionDao.getQuestion(questionID);
+	}
 }

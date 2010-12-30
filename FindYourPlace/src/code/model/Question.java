@@ -2,6 +2,8 @@ package code.model;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Question implements Serializable {
 	/**
@@ -10,25 +12,27 @@ public class Question implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	//唯一标识
-	int questionID;
+	private int questionID;
 	//标题
-	String title;
+	private String title;
 	//内容
-	String content;
+	private String content;
 	//提问者
-	User user;
+	private User user;
 	//是否解决
-	boolean solved;
+	private boolean solved;
 	//发布日期
-	Date pubDate;
+	private Date pubDate;
 	//是否到期
-	boolean expired;
+	private boolean expired;
 	//图片地址
-	String pictureURL;
+	private String pictureURL;
 	//问题类型
-	int type;
+	private int type;
 	//积分悬赏
-	int reward;
+	private int reward;
+	//回答集
+	//private Set answerSet;  //需要answer的配置文件！
 	
 	//构造函数
 	public Question() {
@@ -41,6 +45,7 @@ public class Question implements Serializable {
 		pictureURL = null;
 		type = 0;
 		reward = 0;
+		//answerSet = new HashSet();
 	}
 	
 	public int getQuestionID() {
@@ -105,4 +110,12 @@ public class Question implements Serializable {
 	public void setReward(int reward) {
 		this.reward = reward;
 	}
+
+	/*public Set getAnswerSet() {
+		return answerSet;
+	}
+
+	public void setAnswerSet(Set answerSet) {
+		this.answerSet = answerSet;
+	}*/
 }
