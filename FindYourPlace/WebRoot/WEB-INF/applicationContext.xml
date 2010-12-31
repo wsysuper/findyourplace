@@ -28,6 +28,7 @@
 			<list>
 				<value>code/model/User.hbm.xml</value>
 				<value>code/model/Question.hbm.xml</value>
+				<value>code/model/Answer.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -62,7 +63,11 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-
+    <bean id="AnswerDao" class="code.dao.hibernate.AnswerDaoHibernate">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
 	<!--Service-->
 	<bean id="LoginService" class="code.service.impl.LoginServiceImpl">
 		<property name="userDao">
@@ -76,6 +81,17 @@
 		</property>
 		<property name="userDao">
 			<ref bean="UserDao" />
+		</property>
+	</bean>
+	<bean id="AnswerService" class="code.service.impl.AnswerServiceImpl">
+		<property name="questionDao">
+			<ref bean="QuestionDao" />
+		</property>
+		<property name="userDao">
+			<ref bean="UserDao" />
+		</property>
+		<property name="answerDao">
+			<ref bean="AnswerDao" />
 		</property>
 	</bean>
 	
@@ -103,7 +119,14 @@
 			</list>
 		</property>
 	</bean>
-	
+	<bean id="AnswerServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="AnswerService" />
+		<property name="interceptorNames">
+			<list>
+				<value>transactionInterceptor</value>
+			</list>
+		</property>
+	</bean>
 	<bean id="SearchServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
 		<property name="target" ref="SearchService" />
 		<property name="interceptorNames">
@@ -125,6 +148,12 @@
 		scope="prototype">
 		<property name="questionService">
 			<ref bean="QuestionServiceProxy" />
+		</property>
+	</bean>
+	<bean name="AnswerActionBean" class="code.action.AnswerQuestionAction"
+		scope="prototype">
+		<property name="answerService">
+			<ref bean="AnswerServiceProxy" />
 		</property>
 	</bean>
 	<bean name="SearchActionBean" class="code.action.SearchAction"

@@ -32,5 +32,6 @@
    			<s:file name="upload" label="上传图片"/>
 			<s:reset value="重置"/>
 			<s:submit value="提交" ></s:submit>
-		</s:form></body>
+		</s:form>
+	</body>
 </html>

@@ -18,6 +18,7 @@ public class SearchServiceImpl implements SearchService{
 	public SearchServiceImpl(){
 		questionDao = new QuestionDaoHibernate();
 	}
+	
 	public QuestionDao getQuestionDao(){
 		return this.questionDao;
 	}
