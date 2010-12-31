@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="code.model">
+	<class name="code.model.Answer" table="answer">
+		<id column="answerID" name="answerID" type="java.lang.Integer">
+			<generator class="native" />
+		</id>
+		<property name="content" type="java.lang.String">
+			<column name="answerContent" not-null="false" length="512" />
+		</property>
+		<property name="pubDate" type="java.sql.Date">
+			<column name="pubdate" not-null="false" />
+		</property>
+
+		<property name="isStandard" type="boolean">
+			<column name="isStandard" not-null="false" />
+		</property>
+
+		<property name="pictureURL" type="java.lang.String">
+			<column name="pictureLink" not-null="false" length="128" />
+		</property>
+
+		
+		<many-to-one name="user" column="userName" class="User"
+			not-null="false" />
+		<many-to-one name="question"  class="Question" column="questionID"
+		   not-null="true"
+			 />
+
+	</class>
+</hibernate-mapping>

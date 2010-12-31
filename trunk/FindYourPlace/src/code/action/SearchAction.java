@@ -125,6 +125,7 @@ public class SearchAction extends ActionSupport{
 		else
 			return SUCCESS;
 	}
+
 	public String mapSearch(){
 		System.out.println("in map Search()");
 		lat = Double.valueOf((String) ServletActionContext.getRequest().getParameter("lat"));
@@ -134,6 +135,4 @@ public class SearchAction extends ActionSupport{
 		resultQuestionList = searchService.getMSResultQuestionList(lat, lng);
 		return null;
 	}
-	
-
 }

@@ -36,7 +36,7 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/xwork-core-2.1.6.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/asm.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/casclient.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/cas-client-core-3.2.0.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/casclient.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

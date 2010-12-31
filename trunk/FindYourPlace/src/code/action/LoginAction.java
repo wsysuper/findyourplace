@@ -38,6 +38,7 @@ public class LoginAction extends ActionSupport {
 	}
 	public String execute() {
 		HttpSession session = ServletActionContext.getRequest().getSession();
+		
 		int result = loginService.validate(user);
 		switch(result){
 		case 0:{ 
