@@ -10,10 +10,13 @@
 	<!-- 将action托管给spring -->
 	<constant name="struts.objectFactory" value="spring" />
 	<package name="code" extends="struts-default">
-		<action name="login" class="LoginActionBean">
+		<action name="main" class="LatestQuestionActionBean">
 			<result name="success">/com/main.jsp</result>
+			<result name="input">/com/main.jsp</result>
+		</action>
+		<action name="login" class="LoginActionBean">
+			<result name="success" type="chain">main</result>
 			<result name="input">/com/login.jsp</result>
-			
 		</action>
 		<action name="askquestion" class="QuestionActionBean" method="askQuestion">
 			<result name="success">/com/ask_question.jsp</result>
@@ -28,14 +31,15 @@
 			<result name="success">/com/question_main.jsp</result>
 			<result name="input">/com/ask_question.jsp</result>
 		</action>
+
 		<action name="answerquestion" class="AnswerActionBean" method="answerQuestion">
-        <result name="success">/com/search.jsp</result>
-        </action>
-        
-        <action name="submitanswer" class="AnswerActionBean" method="submitAnswer">
-            <result name="success">/com/question_main.jsp</result>
-            <result name="input">/com/question_main.jsp</result>
-        </action>
+			<result name="success">/com/search.jsp</result>
+		</action>
+
+		<action name="submitanswer" class="AnswerActionBean" method="submitAnswer">
+			<result name="success">/com/question_main.jsp</result>
+			<result name="input">/com/question_main.jsp</result>
+		</action>
 		<action name="search" class="SearchActionBean" method="search">
 			<result name="success">/com/search.jsp</result>
 		</action>

@@ -1,6 +1,7 @@
 package code.service.impl;
 
 import java.sql.Date;
+import java.util.List;
 
 import code.dao.QuestionDao;
 import code.dao.UserDao;
@@ -49,5 +50,12 @@ public class QuestionServiceImpl implements QuestionService {
 	
 	public Question getQuestion(int questionID) {
 		return questionDao.getQuestion(questionID);
+	}
+
+	public List<Question> getLatestQuestion() {
+		// TODO Auto-generated method stub
+		//5天的毫秒数
+		int millisec = 5*24*3600*1000;
+		return questionDao.getLatestQuestion(millisec);
 	}
 }

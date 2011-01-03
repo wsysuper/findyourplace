@@ -22,22 +22,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</head>
   
   <body class="main">
- 	
-		</body>
-		<title>问题</title>
 
-		<meta http-equiv="pragma" content="no-cache">
-		<meta http-equiv="cache-control" content="no-cache">
-		<meta http-equiv="expires" content="0">
-		<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-		<meta http-equiv="description" content="This is my page">
-
-		<link rel="stylesheet" type="text/css" href="/styles.css">
-		</head>
-		<body class="main">
 		<!--<s:a href="https://casserver:60462/cas/logout">退出</s:a>-->
 		<br>
-		<s:a href="/FindYourPlace/com/main.jsp">返回主页</s:a>
+		<s:a href="/FindYourPlace/main.action">返回主页</s:a>
 		<br>
 		  <s:set name="qID"><s:property value="question.questionID"/></s:set>
 		  
