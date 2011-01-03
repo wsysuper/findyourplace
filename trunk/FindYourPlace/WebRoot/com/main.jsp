@@ -29,7 +29,7 @@
 		<br>
 		<s:label value="欢迎，" />
 		<!-- 原显示用户名 -->
-		<s:property value="#session.user"/>
+		<s:property value="#session.user" />
 		<!-- ${sessionScope["edu.yale.its.tp.cas.client.filter.user"]}-->
 		<br>
 		<!--<s:a href="https://casserver:60462/cas/logout">退出</s:a>-->
@@ -39,10 +39,26 @@
 		<s:form action="submitquestion">
 			<!--搜索做好后action应为搜索的action名-->
 			<s:textfield name="keyWords" />
-			<s:submit value="搜索" action="search"/>
+			<s:submit value="搜索" action="search" />
 			<s:submit value="我要提问" action="askquestion" />
 			<s:submit value="我要回答" action="answerquestion" />
 		</s:form>
+		最新问题：
+		<br/>
+		<table border="1">
+			<s:iterator id="qid" value="latestQuestion">
+				<tr>
+					<s:url id="url" action="showquestion">
+						<s:param name="questionID" value="#qid.questionID" />
+					</s:url>
+					<td>
+						<s:a href="%{url}">
+							<s:property value="#qid.title" />
+						</s:a>
+					</td>
+				</tr>
+			</s:iterator>
+		</table>
 		<br>
 	</body>
 </html>

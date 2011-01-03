@@ -1,12 +1,15 @@
 package code.dao.hibernate;
 
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import code.dao.QuestionDao;
 import code.model.Question;
-import java.util.*;
 public class QuestionDaoHibernate extends HibernateDaoSupport implements QuestionDao {
 
 	public boolean addQuestion(Question question) {
@@ -65,5 +68,12 @@ public class QuestionDaoHibernate extends HibernateDaoSupport implements Questio
 			find("from Question q where q.questionID = " + questionID);
 		if (result.size() == 0) return null;
 		else return (Question)result.get(0);
+	}
+
+	public List<Question> getLatestQuestion(int millisec) {
+		// TODO Auto-generated method stub
+		Date pubDate = new Date(System.currentTimeMillis() - millisec);
+		List result = this.getHibernateTemplate().find("from Question q where q.pubDate > '" + pubDate + "'");
+		return result;
 	}
 }

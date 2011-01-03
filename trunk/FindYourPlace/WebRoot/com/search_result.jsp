@@ -23,43 +23,6 @@
 		<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-
-<<<<<<< .mine
-  </head>
-  
-  <body>
-  <table border="1">
-	<s:iterator id="id" value="resultQuestionList">
-	
-	<tr>
-		<td>问题:</td><td><s:property value="title"/></td>
-	</tr>
-	<tr>		
-		<td>问题描述：</td><td><s:property value="content"/></td>
-	</tr>
-	<tr>
-		<td>提问人：</td><td><s:property value="user.userName"/></td>
-	</tr>
-	<tr>
-		<td>提问日期：</td><td><s:property value="pubDate"/></td>	
-	</tr>
-	<tr>
-		<td></td><td><div style ="padding: 3px; border: solid 1px #cccccc; text-align: center" >
-  		<img src ="UploadImages/<s:property value ="pictureURL" />" />
-  		</div>
-  		</td>
-  	</tr>
-  <s:hidden name="keyWords" value="#session.key"/>
-		<s:form action="submitanswer" method = "POST" enctype="multipart/form-data">
-			 <s:textarea name="answer.content" label="回答问题" cols="80" rows="10" />		
-  			<s:file name="upload" label="上传图片"/>
-  			<s:textfield name="caption" label="图片名"/>
-  			<s:reset value="重置"/>
-  			<s:submit value="提交" ></s:submit>
-		</s:form>
-	</s:iterator>
-	</table>
-=======
 	</head>
 
 	<body>
@@ -86,23 +49,12 @@
 						<s:property value="content" />
 					</td>
 				</tr>
-<!--	<tr>-->
+				<!--	<tr>-->
 				<!--		<td>提问人：</td><td><s:property value="curQuestion.user.userName"/></td>-->
 				<!--	</tr>-->
 				<!--	<tr>-->
 				<!--		<td>提问日期：</td><td><s:property value="curQuestion.pubDate"/></td>	-->
 				<!--	</tr>-->
-				<tr>
-					<td></td>
-					<td>
-						<div
-							style="padding: 3px; border: solid 1px #cccccc; text-align: center">
-							<img src="UploadImages/<s:property value ="pictureURL" />" />
-						</div>
-					</td>
-				</tr>
-			</s:iterator>
-			<s:iterator id="id" value="resultAnswerList">
 			</s:iterator>
 		</table>
 		共
@@ -110,7 +62,7 @@
 		页 当前第
 		<s:property value="page+1" />
 		页
-		<br />
+		<br>
 
 		<s:if test="%{page = 0}">
 		</s:if>
@@ -125,6 +77,5 @@
 		<s:else> 
 　　		下一页 最后一页 
 	</s:else>
->>>>>>> .r19
 	</body>
 </html>

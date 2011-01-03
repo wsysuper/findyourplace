@@ -168,4 +168,10 @@
 			<ref bean="QuestionServiceProxy" />
 		</property>
 	</bean>
+	<bean name="LatestQuestionActionBean" class="code.action.GetLatestQuestionAction"
+		scope="prototype">
+		<property name="questionService">
+			<ref bean="QuestionServiceProxy" />
+		</property>
+	</bean>
 </beans>
