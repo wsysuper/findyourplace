@@ -21,7 +21,6 @@ public class Answer implements Serializable {
 	//图片地址
 	String pictureURL;
 	boolean isStandard;
-	//int reward;
 
 	//构造函数
 	public Answer() {
@@ -79,12 +78,6 @@ public class Answer implements Serializable {
 	public void setPictureURL(String pictureURL) {
 		this.pictureURL = pictureURL;
 	}
-	/*public int getReward() {
-		return reward;
-	}
-	public void setReward(int reward) {
-		this.reward = reward;
-	}*/
 
 }
 

@@ -33,7 +33,7 @@
         </action>
         
         <action name="submitanswer" class="AnswerActionBean" method="submitAnswer">
-            <result name="success">/com/answer_main.jsp</result>
+            <result name="success">/com/question_main.jsp</result>
             <result name="input">/com/question_main.jsp</result>
         </action>
 		<action name="search" class="SearchActionBean" method="search">

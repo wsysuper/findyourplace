@@ -1,6 +1,7 @@
 package code.service.impl;
 
 import java.sql.Date;
+import java.util.List;
 
 import code.dao.AnswerDao;
 import code.dao.QuestionDao;
@@ -15,15 +16,6 @@ public class AnswerServiceImpl implements AnswerService {
 	private QuestionDao questionDao;
 	private UserDao userDao;
 	
-	public AnswerDao getAnswerDao() {
-		return answerDao;
-	}
-
-	public void setAnswerDao(AnswerDao answerDao) {
-		this.answerDao = answerDao;
-	}
-
-	
 	public boolean addAnswer(Question question, User user,Answer answer) {
 		// TODO Auto-generated method stub
 		if((question==null) || (user == null))return false;
@@ -34,6 +26,16 @@ public class AnswerServiceImpl implements AnswerService {
 		    
 			return answerDao.addAnswer(answer);
 		}
+	}
+	public Question getQuestion(int questionID) {
+		return answerDao.getQuestion(questionID);
+	}
+	public List getAnswerList(int questionID) {
+		return answerDao.getAnswerList(questionID);
+	}
+
+	public void setAnswerDao(AnswerDao answerDao) {
+		this.answerDao = answerDao;
 	}
 
 	public QuestionDao getQuestionDao() {
@@ -51,4 +53,5 @@ public class AnswerServiceImpl implements AnswerService {
 	public void setUserDao(UserDao userDao) {
 		this.userDao = userDao;
 	}
+
 }

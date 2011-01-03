@@ -32,7 +32,7 @@ public class Question implements Serializable {
 	//积分悬赏
 	private int reward;
 	//回答集
-	//private Set answerSet;  //需要answer的配置文件！
+	private Set answerSet=new HashSet();  //需要answer的配置文件！
 	
 	//构造函数
 	public Question() {
@@ -111,11 +111,11 @@ public class Question implements Serializable {
 		this.reward = reward;
 	}
 
-	/*public Set getAnswerSet() {
+	public Set getAnswerSet() {
 		return answerSet;
 	}
 
 	public void setAnswerSet(Set answerSet) {
 		this.answerSet = answerSet;
-	}*/
+	}
 }

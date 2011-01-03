@@ -34,7 +34,7 @@ public class AnswerQuestionAction extends ActionSupport {
 	private String keyWords;
 
 	// 用于提交问题
-	private Question question=new Question();
+	private Question question;
 	private User user;
 	private Answer answer;
     private AnswerService answerService;
@@ -48,16 +48,9 @@ public class AnswerQuestionAction extends ActionSupport {
 	private String fileName;
 	private String savePath;
 	private String uploadFileName;
-	private int questionID;
-	private List<Answer> resultAnswerList;
+	//private int questionID;
+	private List<Answer> answerList;
 	private String questionFileName;
-	/*public String getCaption() {
-		return caption;
-	}
-
-	public void setCaption(String caption) {
-		this.caption = caption;
-	}*/
 
 	public File getUpload() {
 		return upload;
@@ -172,14 +165,14 @@ public class AnswerQuestionAction extends ActionSupport {
 		HttpSession session = ServletActionContext.getRequest().getSession();
 		user=new User();
 		user.setUserName((String) session.getAttribute("user"));
-		
+		question=answerService.getQuestion(question.getQuestionID());
 		
 		System.out.println(question.getPictureURL());
 		if (answerService.addAnswer(question, user,answer)){
-			
-			
-			//System.out.println("AnswerListID:");
-			//System.out.println(resultAnswerList.size());
+			answerList=answerService.getAnswerList(question.getQuestionID());
+			System.out.println("Set is Empty:");
+			System.out.println (question.getQuestionID());
+			System.out.println (question.getAnswerSet().size());
 			return SUCCESS;
 		}
 		else{
@@ -205,22 +198,8 @@ public class AnswerQuestionAction extends ActionSupport {
 		this.user = user;
 	}
 
-	public List<Answer> getResultAnswerList() {
-		return resultAnswerList;
-	}
-
-	public void setResultAnswerList(List<Answer> resultAnswerList) {
-		this.resultAnswerList = resultAnswerList;
-	}
-
-	public int getQuestionID() {
-		return questionID;
-	}
-
-	public void setQuestionID(int questionID) {
-		this.questionID = questionID;
-	}
-
+	
+	
 	public AnswerService getAnswerService() {
 		return answerService;
 	}
@@ -235,6 +214,14 @@ public class AnswerQuestionAction extends ActionSupport {
 
 	public void setQuestionFileName(String questionFileName) {
 		this.questionFileName = questionFileName;
+	}
+
+	public List<Answer> getAnswerList() {
+		return answerList;
+	}
+
+	public void setAnswerList(List<Answer> answerList) {
+		this.answerList = answerList;
 	}
 
 }
