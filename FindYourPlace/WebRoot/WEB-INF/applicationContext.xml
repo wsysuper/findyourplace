@@ -29,6 +29,7 @@
 				<value>code/model/User.hbm.xml</value>
 				<value>code/model/Question.hbm.xml</value>
 				<value>code/model/Answer.hbm.xml</value>
+				<value>code/model/Googlemap.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -68,6 +69,12 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
+    <bean id="GooglemapDao" class="code.dao.hibernate.GooglemapDaoHibernate">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+		
 	<!--Service-->
 	<bean id="LoginService" class="code.service.impl.LoginServiceImpl">
 		<property name="userDao">
@@ -100,7 +107,12 @@
 			<ref bean="QuestionDao" />
 		</property>
 	</bean>
-
+	<bean id="GooglemapService" class="code.service.impl.GooglemapServiceImpl">
+		<property name="googlemapDao">
+			<ref bean="GooglemapDao" />
+		</property>
+	</bean>
+	
 	<!--ServiceProxy-->
 	<bean id="LoginServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
 		<property name="target" ref="LoginService" />
@@ -135,7 +147,15 @@
 			</list>
 		</property>
 	</bean>
-
+	<bean id="GooglemapServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="GooglemapService" />
+		<property name="interceptorNames">
+			<list>
+				<value>transactionInterceptor</value>
+			</list>
+		</property>
+	</bean>
+	
 	<!--Action-->
 	<bean name="LoginActionBean" class="code.action.LoginAction"
 		scope="prototype">
@@ -174,4 +194,11 @@
 			<ref bean="QuestionServiceProxy" />
 		</property>
 	</bean>
+  	<bean name="GooglemapActionBean" class="code.action.GooglemapAction"
+		scope="prototype">
+		<property name="googlemapService">
+			<ref bean="GooglemapServiceProxy" />
+		</property>
+	</bean>
+	
 </beans>
