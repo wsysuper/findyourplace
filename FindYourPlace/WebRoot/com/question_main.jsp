@@ -1,8 +1,4 @@
-<<<<<<< .mine
-﻿<%@ page language="java" import="java.util.*" contentType = " text/html; charset=utf-8 " pageEncoding="UTF-8"%>
-=======
-﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
->>>>>>> .r19
+<%@ page language="java" import="java.util.*" contentType = " text/html; charset=utf-8 " pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -23,61 +19,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="description" content="This is my page">
 	
 	<link rel="stylesheet" type="text/css" href="/styles.css">
-
-<<<<<<< .mine
-  </head>
+	</head>
   
   <body class="main">
-  
-  <s:set name="qID">
-    <s:property value="question.questionID"/>
-  </s:set>
-  <s:set name="qTitle">
-    <s:property value="question.title"/>
-  </s:set>
-  <s:set name="qContent">
-    <s:property value="question.content"/>
-  </s:set>
-  <s:set name="qName">
-    <s:property value="question.user.userName"/>
-  </s:set>
-  <s:set name="qLink">
-    <s:property value="fileName"/>
-  </s:set>
-  <s:set name="qDate">
-    <s:property value="question.pubDate"/>
-  </s:set>
-  <s:label value="问题："/>
-  <s:property value="question.title"/><br>
-  <s:label value="问题描述："/>
-  <s:property value="question.content"/><br>
-  <s:label value="提问人："/>
-  <s:property value="question.user.userName"/><br>
-  <s:label value="提问日期："/>
-  <s:property value="question.pubDate"/><br>
- 
-     
-  <div style ="padding: 3px; border: solid 1px #cccccc; text-align: center" >
-  <img src ="UploadImages/<s:property value ="fileName" />" />
-  <br/>
-  <s:property value ="caption" />
-  </div >
- 		<s:hidden name="keyWords" value="#session.key"/>
-		<s:form action="submitanswer" method = "POST" enctype="multipart/form-data">
-			<s:textarea name="answer.content" label="回答问题" cols="80" rows="10" />		
-  			<s:file name="upload" label="上传图片"/>
-  			<s:hidden name="question.questionID" value="%{qID}"/>
-  			<s:hidden name="question.title" value="%{qTitle}"/>
-  			<s:hidden name="question.content" value="%{qContent}"/>
-  			<s:hidden name="question.user.userName" value="%{qName}"/>
-  			<s:hidden name="question.pubDate" value="%{qDate}"/>
-  			<s:hidden name="questionFileName" value="%{qLink}"/>
-  			<s:reset value="重置"/>
-  			<s:submit value="提交" ></s:submit>
-		</s:form>
-		
+ 	
 		</body>
-=======
 		<title>问题</title>
 
 		<meta http-equiv="pragma" content="no-cache">
@@ -87,39 +33,51 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<meta http-equiv="description" content="This is my page">
 
 		<link rel="stylesheet" type="text/css" href="/styles.css">
-
-	</head>
-
-	<body class="main">
+		</head>
+		<body class="main">
 		<!--<s:a href="https://casserver:60462/cas/logout">退出</s:a>-->
 		<br>
 		<s:a href="/FindYourPlace/com/main.jsp">返回主页</s:a>
 		<br>
-		<s:label value="问题：" />
-		<s:property value="question.title" />
-		<br>
-		<s:label value="问题描述：" />
-		<s:property value="question.content" />
-		<br>
-		<s:label value="问题类型：" />
-		<s:text name="%{'questionType.'+question.type}" />
-		<br>
-		<s:label value="积分悬赏：" />
-		<s:property value="question.reward" />
-		<br>
-		<s:label value="提问人：" />
-		<s:property value="question.user.userName" />
-		<br>
-		<s:label value="提问日期：" />
-		<s:property value="question.pubDate" />
-		<br>
+		  <s:set name="qID"><s:property value="question.questionID"/></s:set>
+		  
+		 <s:label value="问题：" /><s:property value="question.title" /><br>
+		 <s:label value="问题描述：" /><s:property value="question.content" /><br>
+		<s:label value="问题类型：" /><s:text name="%{'questionType.'+question.type}" /><br>
+		<s:label value="积分悬赏：" /><s:property value="question.reward" /><br>
+		<s:label value="提问人：" /><s:property value="question.user.userName" /><br>
+		<s:label value="提问日期：" /><s:property value="question.pubDate" /><br>
 		<s:if test="%{question.pictureURL!=null}">
 			<div
 				style="padding: 3px; border: solid 1px #cccccc; text-align: center">
 				<img src="UploadImages/<s:property value ="question.pictureURL" />" />
 				<br />
 			</div>
-		</s:if>
+		</s:if><br><br>
+	
+	<s:iterator id="id" value="answerList">
+	<s:label value="回答人：" /><s:property value="user.userName" /><br>
+    <s:label value="回答日期：" /><s:property value="pubDate" /><br>
+	<s:label value="是否为标准答案：" /><s:property value="isStandard" /><br>
+    <s:label value="答案："/><s:property value="content"/><br>
+    <s:if test="%{pictureURL!=null}">
+			<div
+				style="padding: 3px; border: solid 1px #cccccc; text-align: center">
+				<img src="UploadImages/<s:property value ="pictureURL" />" />
+				<br />
+			</div>
+	</s:if><br>
+	</s:iterator><br>
+	
+	
+		<s:label value="我来回答：" /><br>
+        <s:hidden name="keyWords" value="#session.key"/>
+		<s:form action="submitanswer" method = "POST" enctype="multipart/form-data">
+			<s:textarea name="answer.content"  value="" label="回答问题" cols="80" rows="10" />		
+  			<s:file name="upload" label="上传图片"/>
+  			<s:hidden name="question.questionID" value="%{qID}"/>
+  			<s:reset value="重置"/>
+  			<s:submit value="提交" ></s:submit>
+		</s:form>
 	</body>
->>>>>>> .r19
 </html>

@@ -39,12 +39,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <s:property value ="caption" />
   </div >
     	
-   <tr>
-		<td></td><td><div style ="padding: 3px; border: solid 1px #cccccc; text-align: center" >
-  		<img src ="UploadImages/<s:property value ="fileName" />" />
-  		</div>
-  		</td>
-  	</tr> 	
   <table border="1">
 	//<s:iterator id="id" value="resultAnswerList">
     <tr>		

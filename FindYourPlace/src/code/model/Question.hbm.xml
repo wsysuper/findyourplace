@@ -41,6 +41,10 @@
 
 		<many-to-one name="user" column="userName" class="User"
 			not-null="false" />
-
+			
+        <set name="answerSet">
+			<key column="answerID" />
+			<one-to-many class="code.model.Answer" />
+		</set>
 	</class>
 </hibernate-mapping>

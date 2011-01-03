@@ -24,9 +24,9 @@
 		
 		<many-to-one name="user" column="userName" class="User"
 			not-null="false" />
-		<many-to-one name="question"  class="Question" column="questionID"
-		   not-null="true"
-			 />
+		<many-to-one name="question" column="questionID" class="Question" 
+		    not-null="false" />
+		   
 
 	</class>
 </hibernate-mapping>
