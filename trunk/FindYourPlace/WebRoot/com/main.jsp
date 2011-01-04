@@ -34,6 +34,7 @@
 		<br>
 		<!--<s:a href="https://casserver:60462/cas/logout">退出</s:a>-->
 		<br>
+		<div align="center">
 		<s:label value="Find Your Place" />
 		<br>
 		<s:form action="submitquestion">
@@ -41,8 +42,9 @@
 			<s:textfield name="keyWords" />
 			<s:submit value="搜索" action="search" />
 			<s:submit value="我要提问" action="askquestion" />
-			<s:submit value="我要回答" action="answerquestion" />
+<!--			<s:submit value="我要回答" action="answerquestion" />-->
 		</s:form>
+		</div>
 		最新问题：
 		<br/>
 		<table border="1">

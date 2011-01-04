@@ -23,31 +23,37 @@
 		<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-	</head>
-
-	<body>
-		<table border="1">
+	</head><body>
+	<style>
+.mytable {border-collapse:collapse;border:solid #6AA70B;border-width:0px 0 0 0px;width:50%;}
+.mytable ul li {padding-top:5px;text-indent:2em;list-style:none;background:url(http://www.blueidea.com/img/common/new_flash.gif) 3px 50% no-repeat;border-bottom:#6AA70B 1px dotted ;font-family: "Verdana,宋体";font-size: 12px;color:#008000;text-align:left;height:25px;}
+.mytable ul li.t1 {background-color:#EFFEDD;}/* 第一行的背景色 */
+.mytable ul li.t2{background-color:#ffffff;}/* 第二行的背景色 */
+.mytable ul li.t3 {background-color:#D2FCA0;}/* 鼠标经过时的背景色 */
+</style>
+	
+	<body style=margin:0;><br><br><br>
+	<div align="center">
+	<div class=mytable id=tab>
+	<ul>
+<!--		<table>-->
 			<s:iterator id="qid" value="resultQuestionList">
 				<tr>
 					<s:url id="url" action="showquestion">
 						<s:param name="questionID" value="#qid.questionID" />
 					</s:url>
-					<td>
+					<li>
 						问题:
-					</td>
-					<td>
 						<s:a href="%{url}">
 							<s:property value="title" />
 						</s:a>
-					</td>
+					</li>
 				</tr>
 				<tr>
-					<td>
+					<li>
 						问题描述：
-					</td>
-					<td>
 						<s:property value="content" />
-					</td>
+					</li>
 				</tr>
 				<!--	<tr>-->
 				<!--		<td>提问人：</td><td><s:property value="curQuestion.user.userName"/></td>-->
@@ -56,7 +62,9 @@
 				<!--		<td>提问日期：</td><td><s:property value="curQuestion.pubDate"/></td>	-->
 				<!--	</tr>-->
 			</s:iterator>
-		</table>
+<!--		</table>-->
+		</ul>
+		</div>
 		共
 		<s:property value="totalPage" />
 		页 当前第
@@ -77,5 +85,26 @@
 		<s:else> 
 　　		下一页 最后一页 
 	</s:else>
+	<script type="text/javascript">
+<!--
+var Ptr=document.getElementById("tab").getElementsByTagName("li");
+function $() {
+      for (i=1;i<Ptr.length+1;i++) { 
+      Ptr[i-1].className = (i%2>0)?"t1":"t2"; 
+      }
+}
+window.onload=$;
+for(var i=0;i<Ptr.length;i++) {
+      Ptr[i].onmouseover=function(){
+      this.tmpClass=this.className;
+      this.className = "t3";    
+      };
+      Ptr[i].onmouseout=function(){
+      this.className=this.tmpClass;
+      };
+}
+//-->
+</script>
+	
 	</body>
 </html>
