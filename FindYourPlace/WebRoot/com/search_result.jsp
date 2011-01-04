@@ -24,15 +24,60 @@
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 	</head><body>
+	<script>
+	function attachXMenu(objid){
+	var tds=objid.getElementsByTagName('td');
+	for(var i=0;i<tds.length;i++){
+		with(tds[i]){
+			onmouseover=function(){
+				with(this){
+					filters[0].apply();
+					style.background='#3ea936'; //这是鼠标移上去时的背景颜色
+					style.border='1px solid #ffffff'; //边框
+					style.color='#ffffff'; //文字颜色
+					filters[0].play();
+				}
+			}
+			onmouseout=function(){
+				with(this){
+					filters[0].apply();
+					style.background='#f6f6f6'; //这是鼠标离开时的背景颜色
+					style.border='1px solid #ffffff'; //边框
+					style.color='#333333'; //文字颜色
+					filters[0].play();
+				}
+			}
+		}
+	}
+}
+</script>
 	<style>
 .mytable {border-collapse:collapse;border:solid #6AA70B;border-width:0px 0 0 0px;width:50%;}
 .mytable ul li {padding-top:5px;text-indent:2em;list-style:none;background:url(http://www.blueidea.com/img/common/new_flash.gif) 3px 50% no-repeat;border-bottom:#6AA70B 1px dotted ;font-family: "Verdana,宋体";font-size: 12px;color:#008000;text-align:left;height:25px;}
 .mytable ul li.t1 {background-color:#EFFEDD;}/* 第一行的背景色 */
 .mytable ul li.t2{background-color:#ffffff;}/* 第二行的背景色 */
 .mytable ul li.t3 {background-color:#D2FCA0;}/* 鼠标经过时的背景色 */
+.xmenu td{font-size:12px;font-family:verdana,arial;font-weight:none;color:#333333;border:1px solid #ffffff;background:#f6f6f6;filter:blendtrans(duration=0.5);cursor:hand;text-align:center;}
+
 </style>
 	
-	<body style=margin:0;><br><br><br>
+	<body style=margin:0;>
+	<div align="center">
+				<table border="1" width="100%" cellpadding="0" style="border-collapse: collapse" height="30" id="table4" bgcolor=#DBDBDB bordercolor="#DBDBDB" cellspacing="0">
+					<tr>
+						<td>
+						<div align="center">
+							<table class="xmenu" id="xmenu0" border="0" width="100%" cellspacing="3" cellpadding="3" height="30" id="table5">
+								<tr>
+									<td onclick="window.open('http://www.qpsh.com',   '_blank');">首  页</td>
+								</tr>
+							</table><script>attachXMenu(xmenu0); //在上面这个table结束的地方执行事件动作的绑定, 这里的这个xmenu0就是那个table的id</script>
+						</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+	<br><br><br>
 	<div align="center">
 	<div class=mytable id=tab>
 	<ul>
@@ -86,7 +131,7 @@
 　　		下一页 最后一页 
 	</s:else>
 	<script type="text/javascript">
-<!--
+
 var Ptr=document.getElementById("tab").getElementsByTagName("li");
 function $() {
       for (i=1;i<Ptr.length+1;i++) { 
@@ -103,7 +148,9 @@ for(var i=0;i<Ptr.length;i++) {
       this.className=this.tmpClass;
       };
 }
-//-->
+
+
+
 </script>
 	
 	</body>
