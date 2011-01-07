@@ -78,6 +78,6 @@
 
 	<welcome-file-list>
 	<!-- <welcome-file>/com/main.jsp</welcome-file> -->
-		<welcome-file>/com/maptest.jsp</welcome-file>
+		<welcome-file>/com/saveGooglemap.jsp</welcome-file>
 	</welcome-file-list>
 </web-app>

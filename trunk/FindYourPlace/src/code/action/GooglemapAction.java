@@ -1,12 +1,11 @@
 package code.action;
 
-import javax.servlet.http.HttpSession;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
-import org.apache.struts2.ServletActionContext;
-
-import code.dao.GooglemapDao;
-import code.dao.hibernate.GooglemapDaoHibernate;
 import code.model.Googlemap;
+import code.model.Mappoint;
 import code.service.GooglemapService;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -17,17 +16,24 @@ public class GooglemapAction extends ActionSupport {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private int mapID;
-	private Googlemap gmap;
-
 	private GooglemapService googlemapService;
-	
-	public int getMapID() {
-		return mapID;
+
+	private Googlemap gmap;
+	private Integer questionID;
+	private Integer answerID;
+
+	private Double[] pointArr; // for show
+	private Double latitude; // for show & save
+	private Double longitude; // for show & save
+	private int zoomLevel; // for show & save
+	private String markArr; // for save
+
+	public GooglemapService getGooglemapService() {
+		return googlemapService;
 	}
 
-	public void setMapID(int mapID) {
-		this.mapID = mapID;
+	public void setGooglemapService(GooglemapService googlemapService) {
+		this.googlemapService = googlemapService;
 	}
 
 	public Googlemap getGmap() {
@@ -38,43 +44,103 @@ public class GooglemapAction extends ActionSupport {
 		this.gmap = gmap;
 	}
 
-	public GooglemapService getGooglemapService() {
-		return googlemapService;
+	public Integer getQuestionID() {
+		return questionID;
 	}
 
-	public void setGooglemapService(GooglemapService googlemapService) {
-		this.googlemapService = googlemapService;
+	public void setQuestionID(Integer questionID) {
+		this.questionID = questionID;
 	}
 
-	public String execute() {
-		if(getMapID() != 0)
-		{
+	public Integer getAnswerID() {
+		return answerID;
+	}
 
-			gmap = googlemapService.getGooglemap(getMapID());
+	public void setAnswerID(Integer answerID) {
+		this.answerID = answerID;
+	}
 
-			System.out.println(gmap.getLatitude());
-			System.out.println(gmap.getLongitude());
-			System.out.println(gmap.getZoomLevel());
-	/*		 = new Googlemap();
-			gmap.setLatitude(31.02128538276489);
-			gmap.setLongitude(121.43219321966171);
-			gmap.setZoomLevel(12);
+	public Double[] getPointArr() {
+		return pointArr;
+	}
 
-			Double pointlat = 31.02128538276489;
-			Double pointlon = 121.43219321966171;
-*/
-			HttpSession session = ServletActionContext.getRequest().getSession();
-			
-			session.setAttribute("lat", gmap.getLatitude());
-			session.setAttribute("lon", gmap.getLongitude());
-			session.setAttribute("zoom", gmap.getZoomLevel());
-//			session.setAttribute("pointlat", pointlat);
-//			session.setAttribute("pointlon", pointlon);
+	public void setPointArr(Double[] pointArr) {
+		this.pointArr = pointArr;
+	}
 
-			return SUCCESS;
+	public Double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+
+	public Double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
+	}
+
+	public int getZoomLevel() {
+		return zoomLevel;
+	}
+
+	public void setZoomLevel(int zoomLevel) {
+		this.zoomLevel = zoomLevel;
+	}
+
+	public String getMarkArr() {
+		return markArr;
+	}
+
+	public void setMarkArr(String markArr) {
+		this.markArr = markArr;
+	}
+
+	@SuppressWarnings("unchecked")
+	public String showMap() {
+		// gmap = googlemapService.getGooglemap(getMapID());
+
+		// /////////////////FROM HERE///////////////////////
+		gmap = new Googlemap();
+		Set<Mappoint> mappoints = new HashSet(0);
+		mappoints.add(new Mappoint(31.021338250285662, 121.43236219882965));
+		mappoints.add(new Mappoint(31.023374776798356, 121.43765419721603));
+
+		gmap.setHasPoint(true);
+		gmap.setHasPolylines(0);
+		gmap.setLatitude(31.022634644658957);
+		gmap.setLongitude(121.43495589494705);
+		gmap.setZoomLevel(16);
+		gmap.setMappoints(mappoints);
+		// /////////////////CODES ABOVE IS ONLY USED FOR TEST///////////////////////
+		// /////////////////WHEN PRACTICALLY USINT IT, JUST PASS AN INSTANCE OF GMAP///////////////////////
+
+		latitude = gmap.getLatitude();
+		longitude = gmap.getLongitude();
+		zoomLevel = gmap.getZoomLevel();
+		Set<Mappoint> pointSet = null;
+		if (gmap.getHasPoint()) {
+			pointSet = gmap.getMappoints();
+			Iterator<Mappoint> iter = pointSet.iterator();
+			pointArr = new Double[pointSet.size() * 2];// 该数组依次存各个MapPoint的纬度经度
+			int i = 0;
+			while (iter.hasNext()) {
+				Mappoint temp = iter.next();
+				pointArr[i++] = temp.getLatitude();
+				pointArr[i++] = temp.getLongitude();
+			}
 		}
-		else
-			return INPUT;
+		return SUCCESS;
 
+	}
+
+	public String saveMap() {
+		googlemapService.saveGooglemap(latitude, longitude, zoomLevel, questionID,
+				answerID, markArr);
+		return SUCCESS;
 	}
 }

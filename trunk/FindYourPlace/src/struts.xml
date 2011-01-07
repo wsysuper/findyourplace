@@ -53,8 +53,11 @@
 		<action name="turnPage" class="SearchActionBean" method="turnPage">
 			<result name="success">/com/search_result.jsp</result>
 		</action>
-		<action name="Googlemap" class="GooglemapActionBean">
-			<result name="success">/com/Googlemap.jsp</result>
+		<action name="showGooglemap" class="GooglemapActionBean" method="showMap">
+			<result name="success">/com/showGooglemap.jsp</result>
+		</action>
+		<action name="saveGooglemap" class="GooglemapActionBean" method="saveMap">
+			<result name="success" type = "chain">showGooglemap</result>
 		</action>
 	</package>
 </struts>

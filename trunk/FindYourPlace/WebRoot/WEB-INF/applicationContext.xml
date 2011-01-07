@@ -29,7 +29,11 @@
 				<value>code/model/User.hbm.xml</value>
 				<value>code/model/Question.hbm.xml</value>
 				<value>code/model/Answer.hbm.xml</value>
+
 				<value>code/model/Googlemap.hbm.xml</value>
+				<value>code/model/Mappoint.hbm.xml</value>
+				<value>code/model/Mappolyline.hbm.xml</value>
+				<value>code/model/Mappolypoint.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -69,7 +73,22 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-    <bean id="GooglemapDao" class="code.dao.hibernate.GooglemapDaoHibernate">
+    <bean id="GooglemapDao" class="code.dao.GooglemapDao">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+   <bean id="MappointDao" class="code.dao.MappointDao">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+   <bean id="MappolylineDao" class="code.dao.MappolylineDao">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+   <bean id="MappolypointDao" class="code.dao.MappolypointDao">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
