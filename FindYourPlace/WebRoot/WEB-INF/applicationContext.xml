@@ -52,6 +52,7 @@
 				<prop key="add*">PROPAGATION_REQUIRED</prop>
 				<prop key="deductPoint">PROPAGATION_REQUIRED</prop>
 				<prop key="payReward">PROPAGATION_REQUIRED</prop>
+				<prop key="save*">PROPAGATION_REQUIRED</prop>
 			</props>
 		</property>
 	</bean>
@@ -218,6 +219,9 @@
 		<property name="googlemapService">
 			<ref bean="GooglemapServiceProxy" />
 		</property>
+	</bean>
+	<bean name="UploadImageActionBean" class="code.action.UploadImageAction"
+		scope="prototype">
 	</bean>
 	
 </beans>
