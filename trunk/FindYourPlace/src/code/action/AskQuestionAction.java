@@ -1,24 +1,17 @@
 package code.action;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.Date;
 
 import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
-import com.opensymphony.xwork2.ActionSupport;
-
 import code.model.Question;
 import code.model.User;
 import code.service.QuestionService;
-import edu.yale.its.tp.cas.client.filter.CASFilter;
+
+import com.opensymphony.xwork2.ActionSupport;
 
 public class AskQuestionAction extends ActionSupport {
 	/**
@@ -37,13 +30,9 @@ public class AskQuestionAction extends ActionSupport {
 	// 如果提交问题失败，显示失败原因
 	private String result;
 
-	// 上传图片
-	private static final int BUFFER_SIZE = 16 * 1024 ;
-
+	// 上传图片用
 	private File upload;
-	private String uploadContentType;
 	private String fileName;
-	private String savePath;
 	//上传图片的源文件名
 	private String uploadFileName;
 
@@ -55,28 +44,12 @@ public class AskQuestionAction extends ActionSupport {
 		this.upload = upload;
 	}
 
-	public String getUploadContentType() {
-		return uploadContentType;
-	}
-
-	public void setUploadContentType(String uploadContentType) {
-		this.uploadContentType = uploadContentType;
-	}
-
 	public String getFileName() {
 		return fileName;
 	}
 
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
-	}
-
-	public String getSavePath() {
-		return savePath;
-	}
-
-	public void setSavePath(String savePath) {
-		this.savePath = savePath;
 	}
 
 	public String getUploadFileName() {
@@ -131,9 +104,15 @@ public class AskQuestionAction extends ActionSupport {
 				addFieldError("question.content", getText("qcontent.required"));
 			}
 			if (question.getReward() < 0) addFieldError("question.reward",getText("qreward.error"));
+			//验证图片格式
+			if (getUploadFileName() != null) {
+				if (!getExtention(getUploadFileName()).equalsIgnoreCase(".jpg") &&
+						!getExtention(getUploadFileName()).equalsIgnoreCase(".bmp")) {
+					addFieldError("upload", getText("qimage.error"));
+				}
+			}
 		}
 	}
-	
 	
 	//得到关键字，进入提问页面
 	public String askQuestion() {
@@ -144,11 +123,9 @@ public class AskQuestionAction extends ActionSupport {
 	public String submitQuestion() {
 		
 		//如果要进行文件上传
-		if (this.getUploadFileName() != null) {
+		if (getUploadFileName() != null) {
 			fileName = new Date().getTime() + getExtention(this.getUploadFileName());
-			File imageFile = new File(ServletActionContext.getServletContext().getRealPath( "/UploadImages" ) + "\\" + fileName);
-				copy(upload, imageFile);
-				question.setPictureURL(fileName);
+			question.setPictureURL(fileName);
 		}
 	
 		HttpSession session = ServletActionContext.getRequest().getSession();
@@ -158,7 +135,10 @@ public class AskQuestionAction extends ActionSupport {
 		//非单点登录得到用户名
 		user.setUserName((String)session.getAttribute("user"));
 		switch (questionService.addQuestion(question, user)) {
-		case 0: return SUCCESS;
+		case 0: {
+			if (this.getUploadFileName() != null) return "upload";
+			else return SUCCESS;
+		}
 		case 1: {
 			result = getText("qnopoint.error");
 			return INPUT;
@@ -169,33 +149,10 @@ public class AskQuestionAction extends ActionSupport {
 		}
 		}
 	}
-	
-	private static void copy(File src, File dst)  {
-        try  {
-           InputStream in = null ;
-           OutputStream out = null ;
-            try  {
-               in = new BufferedInputStream( new FileInputStream(src), BUFFER_SIZE);
-               out = new BufferedOutputStream( new FileOutputStream(dst), BUFFER_SIZE);
-                byte [] buffer = new byte [BUFFER_SIZE];
-                while (in.read(buffer) > 0 )  {
-                   out.write(buffer);
-               }
-            } finally  {
-                if ( null != in)  {
-                   in.close();
-               }
-                 if ( null != out)  {
-                   out.close();
-               }
-           }
-        } catch (Exception e)  {
-           e.printStackTrace();
-       }
-   }
 
 	//得到上传文件的扩展名
     private static String getExtention(String fileName)  {
+    	System.out.print("fileName in question:");
     	System.out.println(fileName);
         int pos = fileName.lastIndexOf( "." );
         return fileName.substring(pos);

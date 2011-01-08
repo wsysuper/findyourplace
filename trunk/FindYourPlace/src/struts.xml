@@ -26,12 +26,17 @@
 			<result name="success">/com/question_main.jsp</result>
 			<result name="input">/com/main.jsp</result>
 		</action>
-		<action name="submitquestion" class="QuestionActionBean"
-			method="submitQuestion">
+		<action name="uploadimage" class="UploadImageActionBean">
 			<result name="success">/com/question_main.jsp</result>
 			<result name="input">/com/ask_question.jsp</result>
 		</action>
-
+		<action name="submitquestion" class="QuestionActionBean"
+			method="submitQuestion">
+			
+			<result name="upload" type="chain">uploadimage</result>
+			<result name="success">/com/question_main.jsp</result>
+			<result name="input">/com/ask_question.jsp</result>
+		</action>
 		<action name="answerquestion" class="AnswerActionBean" method="answerQuestion">
 			<result name="success">/com/search.jsp</result>
 		</action>
@@ -53,11 +58,13 @@
 		<action name="turnPage" class="SearchActionBean" method="turnPage">
 			<result name="success">/com/search_result.jsp</result>
 		</action>
-		<action name="showGooglemap" class="GooglemapActionBean" method="showMap">
+		<action name="showGooglemap" class="GooglemapActionBean"
+			method="showMap">
 			<result name="success">/com/showGooglemap.jsp</result>
 		</action>
-		<action name="saveGooglemap" class="GooglemapActionBean" method="saveMap">
-			<result name="success" type = "chain">showGooglemap</result>
+		<action name="saveGooglemap" class="GooglemapActionBean"
+			method="saveMap">
+			<result name="success" type="chain">showGooglemap</result>
 		</action>
 	</package>
 </struts>
