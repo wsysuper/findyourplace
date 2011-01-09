@@ -32,7 +32,7 @@ public class Question implements Serializable {
 	//积分悬赏
 	private int reward;
 	//回答集
-	private Set answerSet=new HashSet();  //需要answer的配置文件！
+	private Set answerSet = new HashSet();
 	
 	//构造函数
 	public Question() {
@@ -45,7 +45,6 @@ public class Question implements Serializable {
 		pictureURL = null;
 		type = 0;
 		reward = 0;
-		//answerSet = new HashSet();
 	}
 	
 	public int getQuestionID() {
