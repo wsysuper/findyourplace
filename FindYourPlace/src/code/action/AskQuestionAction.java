@@ -33,7 +33,9 @@ public class AskQuestionAction extends ActionSupport {
 	// 上传图片用
 	private File upload;
 	private String fileName;
-	//上传图片的源文件名
+	// 上传文件的类型
+	private String uploadContentType;
+	// 上传图片的源文件名
 	private String uploadFileName;
 
 	public File getUpload() {
@@ -50,6 +52,14 @@ public class AskQuestionAction extends ActionSupport {
 
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
+	}
+
+	public String getUploadContentType() {
+		return uploadContentType;
+	}
+
+	public void setUploadContentType(String uploadContentType) {
+		this.uploadContentType = uploadContentType;
 	}
 
 	public String getUploadFileName() {
@@ -104,10 +114,9 @@ public class AskQuestionAction extends ActionSupport {
 				addFieldError("question.content", getText("qcontent.required"));
 			}
 			if (question.getReward() < 0) addFieldError("question.reward",getText("qreward.error"));
-			//验证图片格式
+			//验证上传的文件是否为图片
 			if (getUploadFileName() != null) {
-				if (!getExtention(getUploadFileName()).equalsIgnoreCase(".jpg") &&
-						!getExtention(getUploadFileName()).equalsIgnoreCase(".bmp")) {
+				if (!getUploadContentType().startsWith("image")) {
 					addFieldError("upload", getText("qimage.error"));
 				}
 			}
@@ -121,7 +130,6 @@ public class AskQuestionAction extends ActionSupport {
 	
 	//提交问题
 	public String submitQuestion() {
-		
 		//如果要进行文件上传
 		if (getUploadFileName() != null) {
 			fileName = new Date().getTime() + getExtention(this.getUploadFileName());
@@ -152,8 +160,6 @@ public class AskQuestionAction extends ActionSupport {
 
 	//得到上传文件的扩展名
     private static String getExtention(String fileName)  {
-    	System.out.print("fileName in question:");
-    	System.out.println(fileName);
         int pos = fileName.lastIndexOf( "." );
         return fileName.substring(pos);
    }
