@@ -21,6 +21,8 @@ public class Answer implements Serializable {
 	//图片地址
 	String pictureURL;
 	boolean isStandard;
+	//地图
+	Googlemap googleMap;
 
 	//构造函数
 	public Answer() {
@@ -77,6 +79,18 @@ public class Answer implements Serializable {
 	}
 	public void setPictureURL(String pictureURL) {
 		this.pictureURL = pictureURL;
+	}
+
+	public Googlemap getGoogleMap() {
+		return googleMap;
+	}
+
+	public void setGoogleMap(Googlemap googleMap) {
+		this.googleMap = googleMap;
+	}
+
+	public void setStandard(boolean isStandard) {
+		this.isStandard = isStandard;
 	}
 
 }

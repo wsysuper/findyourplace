@@ -46,5 +46,8 @@
 			<key column="answerID" />
 			<one-to-many class="code.model.Answer" />
 		</set>
+		
+		<many-to-one name="googleMap" column="mapID" unique="true" not-null="false"/>
+		
 	</class>
 </hibernate-mapping>
