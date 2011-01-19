@@ -9,6 +9,7 @@ import org.apache.struts2.ServletActionContext;
 
 import code.model.Question;
 import code.model.User;
+import code.service.GooglemapService;
 import code.service.QuestionService;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -21,6 +22,68 @@ public class AskQuestionAction extends ActionSupport {
 
 	// 在主页或搜索条中获得相应信息作为提问标题，跳转到提问页面
 	private String keyWords;
+	private Double latitude; // for show & save
+	private Double longitude; // for show & save
+	private int zoomLevel; // for show & save
+	private boolean addGoogleMap;
+	private GooglemapService googlemapService;
+	private String markArr; // for save 
+
+	public String getMarkArr() {
+		return markArr;
+	}
+
+	public void setMarkArr(String markArr) {
+		this.markArr = markArr;
+	}
+
+	public GooglemapService getGooglemapService() {
+		return googlemapService;
+	}
+
+	public void setGooglemapService(GooglemapService googlemapService) {
+		this.googlemapService = googlemapService;
+	}
+
+	public boolean isAddGoogleMap() {
+		return addGoogleMap;
+	}
+
+	public void setAddGoogleMap(boolean addGoogleMap) {
+		this.addGoogleMap = addGoogleMap;
+	}
+
+	public Double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+
+	public Double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
+	}
+
+	public int getZoomLevel() {
+		return zoomLevel;
+	}
+
+	public void setZoomLevel(int zoomLevel) {
+		this.zoomLevel = zoomLevel;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	// 用于提交问题
 	private Question question;
@@ -142,7 +205,14 @@ public class AskQuestionAction extends ActionSupport {
 		//user.setUserName((String)session.getAttribute(CASFilter.CAS_FILTER_USER));
 		//非单点登录得到用户名
 		user.setUserName((String)session.getAttribute("user"));
-		switch (questionService.addQuestion(question, user)) {
+		int id=0;
+		if(this.addGoogleMap)
+		 id=googlemapService.saveGooglemap(latitude, longitude, zoomLevel, markArr);
+		else
+		 id=googlemapService.saveGooglemap(null, null, 0, markArr);
+		
+		
+		switch (questionService.addQuestion(question, user,id)) {
 		case 0: {
 			if (this.getUploadFileName() != null) return "upload";
 			else return SUCCESS;

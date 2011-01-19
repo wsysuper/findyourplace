@@ -5,6 +5,7 @@ import java.util.List;
 
 import code.dao.QuestionDao;
 import code.dao.UserDao;
+import code.model.Googlemap;
 import code.model.Question;
 import code.model.User;
 import code.service.QuestionService;
@@ -29,7 +30,7 @@ public class QuestionServiceImpl implements QuestionService {
 		this.userDao = userDao;
 	}
 
-	public int addQuestion(Question question, User user) {
+	public int addQuestion(Question question, User user,int id) {
 		// TODO Auto-generated method stub
 		if (user == null) return 2;
 		else {
@@ -37,6 +38,9 @@ public class QuestionServiceImpl implements QuestionService {
 			boolean success = userDao.deductPoint(user.getUserName(), question.getReward());
 			if (success) {
 				//设置提问时间
+				Googlemap map=new Googlemap();
+				map.setMapId(id);
+				question.setGoogleMap(map);
 				question.setPubDate(new Date(System.currentTimeMillis()));
 				question.setUser(user);
 				//返回0表示成功
