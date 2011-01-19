@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import code.dao.hibernate.GooglemapDaoHibernate;
 import code.model.Googlemap;
 import code.model.Mappoint;
 import code.service.GooglemapService;
@@ -116,6 +117,7 @@ public class GooglemapAction extends ActionSupport {
 		gmap.setMappoints(mappoints);
 		// /////////////////CODES ABOVE IS ONLY USED FOR TEST///////////////////////
 		// /////////////////WHEN PRACTICALLY USINT IT, JUST PASS AN INSTANCE OF GMAP///////////////////////
+		gmap=googlemapService.getGooglemapByID(4);
 
 		latitude = googlemapService.getActionLatitude(gmap);
 		longitude = googlemapService.getActionLongitude(gmap);

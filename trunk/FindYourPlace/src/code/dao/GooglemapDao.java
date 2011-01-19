@@ -23,5 +23,6 @@ import code.model.Googlemap;
 
 public interface GooglemapDao {
 	public boolean addGooglemap(Googlemap googlemap);
+	public Googlemap getGooglemap(int mapID);
 
 }
