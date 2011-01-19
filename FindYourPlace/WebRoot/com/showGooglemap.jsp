@@ -75,7 +75,10 @@
 	</head>
 
 	<body onload="initialize()" onunload="GUnload()">
-	
+	<br>
+		<s:a href="/FindYourPlace/main.action">返回主页</s:a>
+	<br>
+		
 		<center>
 			<div>
 				显示 Google Map

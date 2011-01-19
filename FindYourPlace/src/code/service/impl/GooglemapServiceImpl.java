@@ -24,7 +24,7 @@ public class GooglemapServiceImpl implements GooglemapService {
 		this.googlemapDao = googlemapDao;
 	}
 
-	public boolean saveGooglemap(Double latitude, Double longitude,
+	public int saveGooglemap(Double latitude, Double longitude,
 			int zoomLevel, String markArr) {
 
 

@@ -28,6 +28,15 @@ public class GooglemapAction extends ActionSupport {
 	private Double longitude; // for show & save
 	private int zoomLevel; // for show & save
 	private String markArr; // for save
+	private int mapId;
+
+	public int getMapId() {
+		return mapId;
+	}
+
+	public void setMapId(int mapId) {
+		this.mapId = mapId;
+	}
 
 	public GooglemapService getGooglemapService() {
 		return googlemapService;
@@ -106,20 +115,25 @@ public class GooglemapAction extends ActionSupport {
 		// gmap = googlemapService.getGooglemap(getMapID());
 
 		// /////////////////FROM HERE///////////////////////
+		System.out.println("mapId"+mapId);
+		Googlemap map = new Googlemap();
+		map=this.googlemapService.getGooglemapByID(mapId);
+		System.out.println("mapId"+map.getMapId());
+		System.out.println("mapId"+map.getLatitude());
 		gmap = new Googlemap();
 		Set<Mappoint> mappoints = new HashSet(0);
 		mappoints.add(new Mappoint(31.021338250285662, 121.43236219882965));
 		mappoints.add(new Mappoint(31.023374776798356, 121.43765419721603));
 
-		gmap.setLatitude(31.022634644658957);
-		gmap.setLongitude(121.43495589494705);
-		gmap.setZoomLevel(16);
+		gmap.setLatitude(map.getLatitude());
+		gmap.setLongitude(map.getLongitude());
+		gmap.setZoomLevel(map.getZoomLevel());
 		gmap.setMappoints(mappoints);
 		// /////////////////CODES ABOVE IS ONLY USED FOR TEST///////////////////////
 		// /////////////////WHEN PRACTICALLY USINT IT, JUST PASS AN INSTANCE OF GMAP///////////////////////
-		gmap=googlemapService.getGooglemapByID(4);
+		//gmap=googlemapService.getGooglemapByID(4);
 
-		latitude = googlemapService.getActionLatitude(gmap);
+		latitude = googlemapService.getActionLatitude(gmap);//gmap.getLatitude();
 		longitude = googlemapService.getActionLongitude(gmap);
 		zoomLevel = googlemapService.getActionZoomLevel(gmap);
 		pointArr = googlemapService.getActionPointArr(gmap);

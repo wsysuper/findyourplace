@@ -20,13 +20,18 @@
 		<property name="pictureURL" type="java.lang.String">
 			<column name="pictureLink" not-null="false" length="128" />
 		</property>
-
+		
+		
+		<property name="mapId" type="int">
+			<column name="mapID" not-null="false"  />
+		</property>
+		
 		
 		<many-to-one name="user" column="userName" class="User"
 			not-null="false" />
 		<many-to-one name="question" column="questionID" class="Question" 
 		    not-null="false" />
-		<many-to-one name="googleMap" column="mapID" unique="true" not-null="false"/>
+		
 
 	</class>
 </hibernate-mapping>

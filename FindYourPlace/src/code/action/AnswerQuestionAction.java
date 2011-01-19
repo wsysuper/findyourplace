@@ -19,6 +19,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import code.model.Question;
 import code.model.User;
 import code.service.AnswerService;
+import code.service.GooglemapService;
 import code.service.SearchService;
 import code.service.impl.AnswerServiceImpl;
 import code.service.impl.SearchServiceImpl;
@@ -32,12 +33,27 @@ public class AnswerQuestionAction extends ActionSupport {
 
 	// 在主页或搜索条中获得相应信息作为提问标题，跳转到回答页面
 	private String keyWords;
-
+	private Double latitude; // for show & save
+	private Double longitude; // for show & save
+	private int zoomLevel; // for show & save
+	private String markArr; // for save 
+	private boolean showMap;
+	
 	// 用于提交问题
 	private Question question;
+	public boolean isShowMap() {
+		return showMap;
+	}
+
+	public void setShowMap(boolean showMap) {
+		this.showMap = showMap;
+	}
+
 	private User user;
 	private Answer answer;
+	private boolean addGoogleMap;
     private AnswerService answerService;
+    private GooglemapService googlemapService;
 	//upload image 
 	 private static final int BUFFER_SIZE = 16 * 1024 ;
 
@@ -167,8 +183,17 @@ public class AnswerQuestionAction extends ActionSupport {
 		user.setUserName((String) session.getAttribute("user"));
 		question=answerService.getQuestion(question.getQuestionID());
 		
-		System.out.println(question.getPictureURL());
-		if (answerService.addAnswer(question, user,answer)){
+		System.out.println("latitude:"+latitude);
+		
+		
+		int id=0;
+		if(this.addGoogleMap)
+		 id=googlemapService.saveGooglemap(latitude, longitude, zoomLevel, markArr);
+		else
+		 id=googlemapService.saveGooglemap(null, null, 0, markArr);
+		
+		
+		if (answerService.addAnswer(question, user,answer,id)){
 			answerList=answerService.getAnswerList(question.getQuestionID());
 			System.out.println("Set is Empty:");
 			System.out.println (question.getQuestionID());
@@ -222,6 +247,54 @@ public class AnswerQuestionAction extends ActionSupport {
 
 	public void setAnswerList(List<Answer> answerList) {
 		this.answerList = answerList;
+	}
+
+	public double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+
+	public double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+
+	public int getZoomLevel() {
+		return zoomLevel;
+	}
+
+	public void setZoomLevel(int zoomLevel) {
+		this.zoomLevel = zoomLevel;
+	}
+
+	public String getMarkArr() {
+		return markArr;
+	}
+
+	public void setMarkArr(String markArr) {
+		this.markArr = markArr;
+	}
+
+	public GooglemapService getGooglemapService() {
+		return googlemapService;
+	}
+
+	public void setGooglemapService(GooglemapService googlemapService) {
+		this.googlemapService = googlemapService;
+	}
+
+	public void setAddGoogleMap(boolean addGoogleMap){
+		this.addGoogleMap=addGoogleMap;
+	}
+	
+	public boolean getAddGoogleMap(){
+		return this.addGoogleMap;
 	}
 
 }
