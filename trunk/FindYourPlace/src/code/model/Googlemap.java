@@ -15,34 +15,19 @@ public class Googlemap implements java.io.Serializable {
 	private Double latitude;
 	private Double longitude;
 	private Integer zoomLevel;
-	private Boolean hasPoint;
-	private Integer hasPolylines;
-	private Set mappolylines = new HashSet(0);
+//	private Set mappolylines = new HashSet(0);
 	private Set mappoints = new HashSet(0);
 
 	// Constructors
 
 	/** default constructor */
 	public Googlemap() {
-		hasPoint = false;
-		hasPolylines = 0;
+//		hasPoint = false;
+//		hasPolylines = 0;
 		// where I exactly live right now
 		latitude = 31.021338250285662;
 		longitude = 121.43236219882965;
 		zoomLevel = 16;
-	}
-
-	/** full constructor */
-	public Googlemap(Double latitude, Double longitude, Integer zoomLevel,
-			Integer questionId, Integer answerId, Boolean hasPoint,
-			Integer hasPolylines, Set mappolylines, Set mappoints) {
-		this.latitude = latitude;
-		this.longitude = longitude;
-		this.zoomLevel = zoomLevel;
-		this.hasPoint = hasPoint;
-		this.hasPolylines = hasPolylines;
-		this.mappolylines = mappolylines;
-		this.mappoints = mappoints;
 	}
 
 	// Property accessors
@@ -77,30 +62,6 @@ public class Googlemap implements java.io.Serializable {
 
 	public void setZoomLevel(Integer zoomLevel) {
 		this.zoomLevel = zoomLevel;
-	}
-	
-	public Boolean getHasPoint() {
-		return this.hasPoint;
-	}
-
-	public void setHasPoint(Boolean hasPoint) {
-		this.hasPoint = hasPoint;
-	}
-
-	public Integer getHasPolylines() {
-		return this.hasPolylines;
-	}
-
-	public void setHasPolylines(Integer hasPolylines) {
-		this.hasPolylines = hasPolylines;
-	}
-
-	public Set getMappolylines() {
-		return this.mappolylines;
-	}
-
-	public void setMappolylines(Set mappolylines) {
-		this.mappolylines = mappolylines;
 	}
 
 	public Set getMappoints() {
