@@ -16,10 +16,11 @@ public class AnswerServiceImpl implements AnswerService {
 	private QuestionDao questionDao;
 	private UserDao userDao;
 	
-	public boolean addAnswer(Question question, User user,Answer answer) {
+	public boolean addAnswer(Question question, User user,Answer answer,int id) {
 		// TODO Auto-generated method stub
 		if((question==null) || (user == null))return false;
 		else {
+			answer.setMapId(id);
 			answer.setPubDate(new Date(System.currentTimeMillis()));
 			answer.setUser(user);
 			answer.setQuestion(question);

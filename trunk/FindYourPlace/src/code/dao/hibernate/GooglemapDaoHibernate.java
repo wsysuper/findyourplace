@@ -11,13 +11,14 @@ import code.model.Question;
 public class GooglemapDaoHibernate extends HibernateDaoSupport implements
 		GooglemapDao {
 
-	public boolean addGooglemap(Googlemap googlemap) {
+	public int addGooglemap(Googlemap googlemap) {
 		try {
 			getHibernateTemplate().save(googlemap);
+			int in=googlemap.getMapId();
+			return in;
 		} catch (RuntimeException re) {
 			throw re;
 		}
-		return true;
 	}
 	public Googlemap getGooglemap(int mapID) {
 		// TODO Auto-generated method stub

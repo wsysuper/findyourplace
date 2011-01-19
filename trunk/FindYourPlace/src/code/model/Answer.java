@@ -10,19 +10,27 @@ import java.sql.Date;
 public class Answer implements Serializable {
 	private static final long serialVersionUID = 1L;
 	//唯一标识
-	int answerID;
+	private int answerID;
 	//问题
-	Question question;
-	String content;
+	private Question question;
+	private String content;
 	//答题者
-	User user;
+	private User user;
 	//发布日期
-	Date pubDate;
+	private Date pubDate;
 	//图片地址
-	String pictureURL;
-	boolean isStandard;
+	private String pictureURL;
+	private boolean isStandard;
 	//地图
-	Googlemap googleMap;
+	private int mapId;
+
+	public int getMapId() {
+		return mapId;
+	}
+
+	public void setMapId(int mapId) {
+		this.mapId = mapId;
+	}
 
 	//构造函数
 	public Answer() {
@@ -81,17 +89,13 @@ public class Answer implements Serializable {
 		this.pictureURL = pictureURL;
 	}
 
-	public Googlemap getGoogleMap() {
-		return googleMap;
-	}
-
-	public void setGoogleMap(Googlemap googleMap) {
-		this.googleMap = googleMap;
-	}
-
 	public void setStandard(boolean isStandard) {
 		this.isStandard = isStandard;
 	}
+
+	
+
+	
 
 }
 

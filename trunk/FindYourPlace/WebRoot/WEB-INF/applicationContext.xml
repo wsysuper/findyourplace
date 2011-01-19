@@ -199,6 +199,9 @@
 		<property name="answerService">
 			<ref bean="AnswerServiceProxy" />
 		</property>
+		<property name="googlemapService">
+			<ref bean="GooglemapServiceProxy" />
+		</property>
 	</bean>
 	<bean name="SearchActionBean" class="code.action.SearchAction"
 		scope="prototype">
