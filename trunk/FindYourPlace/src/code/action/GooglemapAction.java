@@ -117,24 +117,12 @@ public class GooglemapAction extends ActionSupport {
 		// /////////////////CODES ABOVE IS ONLY USED FOR TEST///////////////////////
 		// /////////////////WHEN PRACTICALLY USINT IT, JUST PASS AN INSTANCE OF GMAP///////////////////////
 
-		latitude = gmap.getLatitude();
-		longitude = gmap.getLongitude();
-		zoomLevel = gmap.getZoomLevel();
-		Set<Mappoint> pointSet = null;
-//		if (gmap.getHasPoint())
-
-		pointSet = gmap.getMappoints();
-		Iterator<Mappoint> iter = pointSet.iterator();
-		pointArr = new Double[pointSet.size() * 2];// 该数组依次存各个MapPoint的纬度经度
-		int i = 0;
-		while (iter.hasNext()) {
-			Mappoint temp = iter.next();
-			pointArr[i++] = temp.getLatitude();
-			pointArr[i++] = temp.getLongitude();
-		}
+		latitude = googlemapService.getActionLatitude(gmap);
+		longitude = googlemapService.getActionLongitude(gmap);
+		zoomLevel = googlemapService.getActionZoomLevel(gmap);
+		pointArr = googlemapService.getActionPointArr(gmap);
 		
 		return SUCCESS;
-
 	}
 
 	public String saveMap() {

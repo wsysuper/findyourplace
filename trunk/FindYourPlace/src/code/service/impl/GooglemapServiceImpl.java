@@ -1,6 +1,7 @@
 package code.service.impl;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import code.dao.GooglemapDao;
@@ -54,5 +55,35 @@ public class GooglemapServiceImpl implements GooglemapService {
 			}
 		}
 		return latlng;
+	}
+
+	public double getActionLatitude(Googlemap gmap) {
+		// TODO Auto-generated method stub
+		return gmap.getLatitude();
+	}
+
+	public double getActionLongitude(Googlemap gmap) {
+		// TODO Auto-generated method stub
+		return gmap.getLongitude();
+	}
+
+	public Double[] getActionPointArr(Googlemap gmap) {
+		// TODO Auto-generated method stub
+		Set<Mappoint> pointSet = null;
+		pointSet = gmap.getMappoints();
+		Iterator<Mappoint> iter = pointSet.iterator();
+		Double[] pointArr = new Double[pointSet.size() * 2];// 该数组依次存各个MapPoint的纬度经度
+		int i = 0;
+		while (iter.hasNext()) {
+			Mappoint temp = iter.next();
+			pointArr[i++] = temp.getLatitude();
+			pointArr[i++] = temp.getLongitude();
+		}
+		return pointArr;
+	}
+
+	public int getActionZoomLevel(Googlemap gmap) {
+		// TODO Auto-generated method stub
+		return gmap.getZoomLevel();
 	}
 }
