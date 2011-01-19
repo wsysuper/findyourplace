@@ -193,6 +193,9 @@
 		<property name="questionService">
 			<ref bean="QuestionServiceProxy" />
 		</property>
+		<property name="googlemapService">
+			<ref bean="GooglemapServiceProxy" />
+		</property>
 	</bean>
 	<bean name="AnswerActionBean" class="code.action.AnswerQuestionAction"
 		scope="prototype">
