@@ -110,8 +110,6 @@ public class GooglemapAction extends ActionSupport {
 		mappoints.add(new Mappoint(31.021338250285662, 121.43236219882965));
 		mappoints.add(new Mappoint(31.023374776798356, 121.43765419721603));
 
-		gmap.setHasPoint(true);
-		gmap.setHasPolylines(0);
 		gmap.setLatitude(31.022634644658957);
 		gmap.setLongitude(121.43495589494705);
 		gmap.setZoomLevel(16);
@@ -123,17 +121,18 @@ public class GooglemapAction extends ActionSupport {
 		longitude = gmap.getLongitude();
 		zoomLevel = gmap.getZoomLevel();
 		Set<Mappoint> pointSet = null;
-		if (gmap.getHasPoint()) {
-			pointSet = gmap.getMappoints();
-			Iterator<Mappoint> iter = pointSet.iterator();
-			pointArr = new Double[pointSet.size() * 2];// 该数组依次存各个MapPoint的纬度经度
-			int i = 0;
-			while (iter.hasNext()) {
-				Mappoint temp = iter.next();
-				pointArr[i++] = temp.getLatitude();
-				pointArr[i++] = temp.getLongitude();
-			}
+//		if (gmap.getHasPoint())
+
+		pointSet = gmap.getMappoints();
+		Iterator<Mappoint> iter = pointSet.iterator();
+		pointArr = new Double[pointSet.size() * 2];// 该数组依次存各个MapPoint的纬度经度
+		int i = 0;
+		while (iter.hasNext()) {
+			Mappoint temp = iter.next();
+			pointArr[i++] = temp.getLatitude();
+			pointArr[i++] = temp.getLongitude();
 		}
+		
 		return SUCCESS;
 
 	}

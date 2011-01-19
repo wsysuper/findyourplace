@@ -25,13 +25,6 @@ public class Mappoint implements java.io.Serializable {
 		this.longitude = longitude;
 	}
 
-	/** full constructor */
-	public Mappoint(Double latitude, Double longitude, Integer mapId) {
-		this.latitude = latitude;
-		this.longitude = longitude;
-		this.mapId = mapId;
-	}
-
 	// Property accessors
 
 	public Integer getPointId() {

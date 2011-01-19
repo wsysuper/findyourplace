@@ -23,7 +23,6 @@ public class GooglemapServiceImpl implements GooglemapService {
 		this.googlemapDao = googlemapDao;
 	}
 
-	@SuppressWarnings("unchecked")
 	public boolean saveGooglemap(Double latitude, Double longitude,
 			int zoomLevel, String markArr) {
 		// TODO Auto-generated method stub
@@ -37,7 +36,6 @@ public class GooglemapServiceImpl implements GooglemapService {
 		map.setLongitude(longitude);
 		map.setZoomLevel(zoomLevel);
 		if (markArr.length() != 0) {
-			map.setHasPoint(true);
 			Set mappoints = parse(markArr);
 			map.setMappoints(mappoints);
 		}
@@ -47,12 +45,11 @@ public class GooglemapServiceImpl implements GooglemapService {
 		System.out.println(map.getZoomLevel());
 		System.out.println(markArr);
 		
-		System.out.println("saving not done..");
+		System.out.println(map.getMappoints().isEmpty());
 		//return false;
 		return googlemapDao.addGooglemap(map);
 	}
 
-	@SuppressWarnings("unchecked")
 	private Set parse(String markArr) {
 
 		String[] outer = markArr.split(";");
@@ -61,7 +58,8 @@ public class GooglemapServiceImpl implements GooglemapService {
 		for(int i = 0; i < outer.length; i++)
 		{
 			String[] inner = outer[i].split(",");
-			if(inner[0]=="1")
+			
+			if(inner[0].equals("1"))
 			{
 				latlng.add(new Mappoint(Double.valueOf(inner[1]),Double.valueOf(inner[2])));
 			}
