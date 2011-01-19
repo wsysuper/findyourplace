@@ -11,7 +11,7 @@ public class Mappoint implements java.io.Serializable {
 	private Integer pointId;
 	private Double latitude;
 	private Double longitude;
-	private Integer mapId;
+	private Googlemap googlemap;
 
 	// Constructors
 
@@ -51,12 +51,13 @@ public class Mappoint implements java.io.Serializable {
 		this.longitude = longitude;
 	}
 
-	public Integer getMapId() {
-		return this.mapId;
+	public Googlemap getGooglemap() {
+		return googlemap;
 	}
 
-	public void setMapId(Integer mapId) {
-		this.mapId = mapId;
+	public void setGooglemap(Googlemap googlemap) {
+		this.googlemap = googlemap;
 	}
+
 
 }
