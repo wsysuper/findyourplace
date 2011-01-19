@@ -27,7 +27,7 @@
             <one-to-many class="code.model.Mappolyline" />
         </set>
 -->
-  <set cascade="all" name="mappoints" sort="unsorted">
+  <set cascade="all" inverse="true" name="mappoints" sort="unsorted">
    <key>
     <column name="pointID"/>
    </key>
