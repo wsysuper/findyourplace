@@ -81,12 +81,13 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
+ <!--  
    <bean id="MappointDao" class="code.dao.hibernate.MappointDaoHibernate">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-<!--  
+
    <bean id="MappolylineDao" class="code.dao.MappolylineDao">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
