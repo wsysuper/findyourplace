@@ -86,4 +86,9 @@ public class GooglemapServiceImpl implements GooglemapService {
 		// TODO Auto-generated method stub
 		return gmap.getZoomLevel();
 	}
+
+	public Googlemap getGooglemapByID(int mapID) {
+		// TODO Auto-generated method stub
+		return googlemapDao.getGooglemap(mapID);
+	}
 }

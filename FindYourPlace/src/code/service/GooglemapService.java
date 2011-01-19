@@ -8,4 +8,5 @@ public interface GooglemapService {
 	abstract public double getActionLongitude(Googlemap gmap);
 	abstract public int getActionZoomLevel(Googlemap gmap);
 	abstract public Double[] getActionPointArr(Googlemap gmap);
+	abstract public Googlemap getGooglemapByID(int mapID);
 }

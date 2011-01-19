@@ -6,6 +6,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import code.dao.GooglemapDao;
 import code.model.Googlemap;
+import code.model.Question;
 
 public class GooglemapDaoHibernate extends HibernateDaoSupport implements
 		GooglemapDao {
@@ -17,6 +18,21 @@ public class GooglemapDaoHibernate extends HibernateDaoSupport implements
 			throw re;
 		}
 		return true;
+	}
+	public Googlemap getGooglemap(int mapID) {
+		// TODO Auto-generated method stub
+		List result = this.getHibernateTemplate().
+			find("from Googlemap where mapID = " + mapID);
+		if (result.size() == 0) 
+		{
+			System.out.println("why?");
+			return null;
+		}
+		else
+		{
+			System.out.println("OOOK");
+			return (Googlemap)result.get(0);
+		}
 	}
 	public List getAreaGooglemap(double lon,double lat)
 	{
