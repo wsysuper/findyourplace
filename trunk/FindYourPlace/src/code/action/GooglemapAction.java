@@ -139,8 +139,7 @@ public class GooglemapAction extends ActionSupport {
 	}
 
 	public String saveMap() {
-		googlemapService.saveGooglemap(latitude, longitude, zoomLevel, questionID,
-				answerID, markArr);
+		googlemapService.saveGooglemap(latitude, longitude, zoomLevel, markArr);
 		return SUCCESS;
 	}
 }

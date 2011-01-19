@@ -15,8 +15,6 @@ public class Googlemap implements java.io.Serializable {
 	private Double latitude;
 	private Double longitude;
 	private Integer zoomLevel;
-	private Integer questionId;
-	private Integer answerId;
 	private Boolean hasPoint;
 	private Integer hasPolylines;
 	private Set mappolylines = new HashSet(0);
@@ -41,8 +39,6 @@ public class Googlemap implements java.io.Serializable {
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.zoomLevel = zoomLevel;
-		this.questionId = questionId;
-		this.answerId = answerId;
 		this.hasPoint = hasPoint;
 		this.hasPolylines = hasPolylines;
 		this.mappolylines = mappolylines;
@@ -82,23 +78,7 @@ public class Googlemap implements java.io.Serializable {
 	public void setZoomLevel(Integer zoomLevel) {
 		this.zoomLevel = zoomLevel;
 	}
-
-	public Integer getQuestionId() {
-		return this.questionId;
-	}
-
-	public void setQuestionId(Integer questionId) {
-		this.questionId = questionId;
-	}
-
-	public Integer getAnswerId() {
-		return this.answerId;
-	}
-
-	public void setAnswerId(Integer answerId) {
-		this.answerId = answerId;
-	}
-
+	
 	public Boolean getHasPoint() {
 		return this.hasPoint;
 	}

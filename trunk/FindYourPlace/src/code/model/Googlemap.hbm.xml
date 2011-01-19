@@ -19,12 +19,6 @@
         <property name="zoomLevel" type="java.lang.Integer">
             <column name="zoomLevel" />
         </property>
-        <property name="questionId" type="java.lang.Integer">
-            <column name="questionID" />
-        </property>
-        <property name="answerId" type="java.lang.Integer">
-            <column name="answerID" />
-        </property>
         <property name="hasPoint" type="java.lang.Boolean">
             <column name="hasPoint" />
         </property>

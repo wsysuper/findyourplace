@@ -33,6 +33,8 @@ public class Question implements Serializable {
 	private int reward;
 	//回答集
 	private Set answerSet = new HashSet();
+	//地图
+	private Googlemap googleMap;
 	
 	//构造函数
 	public Question() {
@@ -45,6 +47,7 @@ public class Question implements Serializable {
 		pictureURL = null;
 		type = 0;
 		reward = 0;
+		googleMap = null;
 	}
 	
 	public int getQuestionID() {
@@ -116,5 +119,13 @@ public class Question implements Serializable {
 
 	public void setAnswerSet(Set answerSet) {
 		this.answerSet = answerSet;
+	}
+
+	public Googlemap getGoogleMap() {
+		return googleMap;
+	}
+
+	public void setGoogleMap(Googlemap googleMap) {
+		this.googleMap = googleMap;
 	}
 }
