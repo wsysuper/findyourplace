@@ -16,12 +16,12 @@ public class GooglemapAction extends ActionSupport {
 	 * @author WSY
 	 */
 	private static final long serialVersionUID = 1L;
-
+	private int questionID;
 	private GooglemapService googlemapService;
 
 	private Googlemap gmap;
-	private Integer questionID;
-	private Integer answerID;
+	
+	private int answerID;
 
 	private Double[] pointArr; // for show
 	private Double latitude; // for show & save
@@ -54,19 +54,19 @@ public class GooglemapAction extends ActionSupport {
 		this.gmap = gmap;
 	}
 
-	public Integer getQuestionID() {
+	public int getQuestionID() {
 		return questionID;
 	}
 
-	public void setQuestionID(Integer questionID) {
+	public void setQuestionID(int questionID) {
 		this.questionID = questionID;
 	}
 
-	public Integer getAnswerID() {
+	public int getAnswerID() {
 		return answerID;
 	}
 
-	public void setAnswerID(Integer answerID) {
+	public void setAnswerID(int answerID) {
 		this.answerID = answerID;
 	}
 
@@ -115,11 +115,20 @@ public class GooglemapAction extends ActionSupport {
 		// gmap = googlemapService.getGooglemap(getMapID());
 
 		// /////////////////FROM HERE///////////////////////
+		System.out.println("questionid:"+questionID);
 		System.out.println("mapId"+mapId);
 		Googlemap map = new Googlemap();
+		
 		map=this.googlemapService.getGooglemapByID(mapId);
+		if(map.getLatitude()==null && map.getLongitude()==null && map.getZoomLevel()==0)
+		{
+		
+		}
 		System.out.println("mapId"+map.getMapId());
 		System.out.println("mapId"+map.getLatitude());
+		System.out.println("mapId"+map.getLongitude());
+		System.out.println("mapId"+map.getZoomLevel());
+		
 		gmap = new Googlemap();
 		Set<Mappoint> mappoints = new HashSet(0);
 		mappoints.add(new Mappoint(31.021338250285662, 121.43236219882965));

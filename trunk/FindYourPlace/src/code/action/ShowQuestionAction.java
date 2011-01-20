@@ -1,5 +1,6 @@
 package code.action;
 
+import code.model.Googlemap;
 import code.model.Question;
 import code.service.QuestionService;
 
@@ -17,13 +18,15 @@ public class ShowQuestionAction extends ActionSupport {
 	private QuestionService questionService;
 	//用于页面显示问题答案
 	//private List answerList;
+	
+	private int mapId;
 
-	public int getQuestionID() {
-		return questionID;
+	public int getMapId() {
+		return mapId;
 	}
 
-	public void setQuestionID(int questionID) {
-		this.questionID = questionID;
+	public void setMapId(int mapId) {
+		this.mapId = mapId;
 	}
 
 	public Question getQuestion() {
@@ -48,7 +51,17 @@ public class ShowQuestionAction extends ActionSupport {
 		else {
 			//把Set转换成List
 			//answerList = new ArrayList(question.getAnswerSet());
+			if (question.getGoogleMap() == null) mapId = 0;
+			else mapId = question.getGoogleMap().getMapId();
 			return SUCCESS;
 		}
+	}
+
+	public int getQuestionID() {
+		return questionID;
+	}
+
+	public void setQuestionID(int questionID) {
+		this.questionID = questionID;
 	}
 }

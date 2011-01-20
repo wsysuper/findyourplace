@@ -22,6 +22,10 @@
 			<result name="success">/com/ask_question.jsp</result>
 			<result name="input">/com/ask_question.jsp</result>
 		</action>
+		<action name="showGooglemap" class="GooglemapActionBean"
+			method="showMap">
+			<result name="success">/com/showGooglemap.jsp</result>
+		</action>
 		<action name="showquestion" class="ShowQuestionActionBean">
 			<result name="success">/com/question_main.jsp</result>
 			<result name="input">/com/main.jsp</result>
@@ -58,10 +62,7 @@
 		<action name="turnPage" class="SearchActionBean" method="turnPage">
 			<result name="success">/com/search_result.jsp</result>
 		</action>
-		<action name="showGooglemap" class="GooglemapActionBean"
-			method="showMap">
-			<result name="success">/com/showGooglemap.jsp</result>
-		</action>
+		
 		<action name="saveGooglemap" class="GooglemapActionBean"
 			method="saveMap">
 			<result name="success" type="chain">showGooglemap</result>
