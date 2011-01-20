@@ -1,0 +1,82 @@
+body{
+padding:0px;
+margin:0px;
+background-color:#FFFFFF;
+}
+.top {
+	font-family: Tahoma;
+	font-size: 11px;
+	line-height: 12px;
+	color: #5E6162;
+}
+.jump {
+	font-family: Tahoma;
+	font-size: 11px;
+	line-height: 12px;
+	color: #505050;
+	background-color: #FFFFFF;
+	height: 20px;
+	width: 179px;
+	border: 1px solid #505050;
+}
+.copy {
+	font-family: Tahoma;
+	font-size: 11px;
+	line-height: 12px;
+	color: #FFFFFF;
+}
+.text_1 {
+	font-family: Tahoma;
+	font-size: 11px;
+	line-height: 14px;
+	color: #5D5D5D;
+}
+.tit_1 {
+	font-family: Tahoma;
+	font-size: 11px;
+	line-height: 12px;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #5D5D5D;
+}
+.link_1 {
+	font-family: Tahoma;
+	font-size: 11px;
+	line-height: 14px;
+	color: #6C8797;
+}
+.link_2 {
+	font-family: Tahoma;
+	font-size: 11px;
+	line-height: 14px;
+	color: #4D6677;
+}
+.sub {
+	font-family: Tahoma;
+	font-size: 11px;
+	line-height: 16px;
+	color: #505050;
+	background-color: #FFFFFF;
+	height: 21px;
+	width: 150px;
+	border: 1px solid #9E9E9E;
+}
+.form_1 {
+	font-family: Tahoma;
+	font-size: 11px;
+	line-height: 12px;
+	background-color: #F0F0F0;
+	height: 18px;
+	width: 202px;
+	border: 1px solid #ADADAD;
+}
+.form_2 {
+	font-family: Tahoma;
+	font-size: 11px;
+	line-height: 12px;
+	background-color: #F0F0F0;
+	height: 118px;
+	width: 202px;
+	border: 1px solid #ADADAD;
+	overflow:auto;
+}

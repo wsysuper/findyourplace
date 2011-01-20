@@ -36,6 +36,7 @@ public class Question implements Serializable {
 	//地图
 	private Googlemap googleMap;
 	
+
 	//构造函数
 	public Question() {
 		title = null;
