@@ -15,10 +15,17 @@ public class SearchAction extends ActionSupport{
 	private List<Question> resultQuestionList;
 	private List<Answer> resultAnswerList;
 	private static String content;
+	private static String keyWords;
 	private int searchType;
 	private int resultQuestionNum;
 	private int totalPage;
 	private int page;
+	public static String getKeyWords() {
+		return keyWords;
+	}
+	public static void setKeyWords(String keyWords) {
+		SearchAction.keyWords = keyWords;
+	}
 	private double lat;
 	private double lng;
 	private SearchService searchService;
@@ -124,6 +131,26 @@ public class SearchAction extends ActionSupport{
 		else
 			return SUCCESS;
 	}
+	public String commonSearch(){
+		System.out.println("in commonSearch execute");
+		//HttpSession session = ServletActionContext.getRequest().getSession();
+		searchService.setWordSearchType(0);
+		System.out.println("CommonSearchAction "+content);
+		resultQuestionList = searchService.getWSResultQuestionList(content);
+		//curQuestion = resultQuestionList.get(0);
+		//resultAnswerList = searchService.getResultAnswerList(curQuestion.getQuestionID());
+		resultQuestionNum = resultQuestionList.size();
+		System.out.print(resultQuestionNum);
+		totalPage = resultQuestionNum;
+		if(resultQuestionNum == 0)
+		{
+			System.out.println("the result questionlist is empty");
+		
+			return INPUT;
+		}
+		else
+			return SUCCESS;
+	}
 
 	public String mapSearch(){
 		System.out.println("in map Search()");
@@ -132,6 +159,13 @@ public class SearchAction extends ActionSupport{
 		System.out.print(lat);
 		System.out.print(lng);
 		resultQuestionList = searchService.getMSResultQuestionList(lat, lng);
-		return null;
+		if(resultQuestionNum == 0)
+		{
+			System.out.println("the result questionlist is empty");
+		
+			return INPUT;
+		}
+		else
+			return SUCCESS;
 	}
 }

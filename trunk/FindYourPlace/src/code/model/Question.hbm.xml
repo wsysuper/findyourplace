@@ -38,7 +38,7 @@
 		<property name="reward" type="java.lang.Integer">
 			<column name="rewardPoint" not-null="false" />
 		</property>
-
+		
 		<many-to-one name="user" column="userName" class="User"
 			not-null="false" />
 			

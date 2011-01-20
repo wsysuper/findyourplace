@@ -16,7 +16,13 @@
 	</head>
 
 	<body class="main" class="main" onload="initialize()" onunload="GUnload()">
-	<script language="javascript" type="text/javascript">
+	<table width="739" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="281" valign="top"><table width="683" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+      <td width="236"><img src="images/spacer.gif" width="1" height="1"></td>
+            <td width="87" align="center" bgcolor="EFEFEF"><a href="/FindYourPlace/main.action"><img src="images/i_1.gif" width="9" height="17" border="0"></a><img src="images/i_sp.gif" width="1" height="17" style="margin-left:9px; margin-right:9px "><a href="#"><img src="images/i_2.gif" width="10" height="17" border="0"></a><img src="images/i_sp.gif" width="1" height="17" style="margin-left:9px; margin-right:9px "><a href="#"><img src="images/i_3.gif" width="11" height="17" border="0"></a></td>
+      <script language="javascript" type="text/javascript">
 function displayHideUI()
 {
     var ui = document.getElementById("map_canvas");
@@ -153,5 +159,18 @@ function displayShowUI()
 			<s:reset value="重置"/>
 			<s:submit value="提交"  onclick="doPost()"></s:submit>
 		</s:form>
+        <td height="30" valign="top"><img src="images/spacer.gif" width="1" height="1"></td>
+      </tr>
+      <tr>
+      <td height="44" bgcolor="4D6677" class="copy" style="padding-left:20px ">FindYourPlace.Com &copy; 2005 | <a href="index-6.html" class="copy">Privacy Policy</a> | <a href="#" class="copy">Terms Of Use</a></td>
+        <td height="29" valign="top"><table width="683" height="28" border="0" cellpadding="0" cellspacing="0">
+        </table>
+            </td>
+          </tr>
+          </table></td>
+  		</tr>
+        </table>
 	</body>
 </html>
+	
+	

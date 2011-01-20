@@ -47,6 +47,7 @@ public class ShowQuestionAction extends ActionSupport {
 
 	public String execute() {
 		question = questionService.getQuestion(questionID);
+		System.out.println(question);
 		if (question == null) return INPUT;
 		else {
 			//把Set转换成List

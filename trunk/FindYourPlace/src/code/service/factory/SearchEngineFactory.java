@@ -1,5 +1,6 @@
 package code.service.factory;
 
+import code.dao.GooglemapDao;
 import code.dao.QuestionDao;
 import code.service.SearchService;
 import code.service.MapSearchService;
@@ -26,8 +27,8 @@ public class SearchEngineFactory {
 	public IWordSearchEngine createWordSearchEngine(QuestionDao questionDao){
 		return (IWordSearchEngine) new WordSearchEngine(questionDao);
 	}
-	public IMapSearchEngine createMapSearchEngine(QuestionDao questionDao){
-		return (IMapSearchEngine) new MapSearchEngine(questionDao);
+	public IMapSearchEngine createMapSearchEngine(QuestionDao questionDao,GooglemapDao googlemapDao){
+		return (IMapSearchEngine) new MapSearchEngine(questionDao,googlemapDao);
 	}
 	
 }

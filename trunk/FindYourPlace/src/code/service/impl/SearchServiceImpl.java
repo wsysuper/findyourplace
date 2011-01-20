@@ -13,12 +13,21 @@ import code.service.searchstrategy.*;
 import code.service.searchstrategy.imp.*;
 public class SearchServiceImpl implements SearchService{
 	private QuestionDao questionDao;
+	private GooglemapDao googlemapDao;
 	private IMapSearchEngine imapSearchEngine;
 	private IWordSearchEngine iwordSearchEngine;
 	public SearchServiceImpl(){
 		questionDao = new QuestionDaoHibernate();
 	}
 	
+	public GooglemapDao getGooglemapDao() {
+		return googlemapDao;
+	}
+
+	public void setGooglemapDao(GooglemapDao googlemapDao) {
+		this.googlemapDao = googlemapDao;
+	}
+
 	public QuestionDao getQuestionDao(){
 		return this.questionDao;
 	}
@@ -29,7 +38,7 @@ public class SearchServiceImpl implements SearchService{
 	public List getWSResultQuestionList(String content){
 		if(iwordSearchEngine == null)
 		{
-			this.iwordSearchEngine = (IWordSearchEngine) SearchEngineFactory.newInstance().createMapSearchEngine(questionDao);
+			this.iwordSearchEngine = (IWordSearchEngine) SearchEngineFactory.newInstance().createMapSearchEngine(questionDao,googlemapDao);
 			return this.iwordSearchEngine.getWSResultQuestionList(content);
 		}
 		else
@@ -39,7 +48,7 @@ public class SearchServiceImpl implements SearchService{
 	public List getMSResultQuestionList(double lat,double lng){
 		if(imapSearchEngine == null)
 		{
-			this.imapSearchEngine = SearchEngineFactory.newInstance().createMapSearchEngine(questionDao);
+			this.imapSearchEngine = SearchEngineFactory.newInstance().createMapSearchEngine(questionDao,googlemapDao);
 			return this.imapSearchEngine.getMSResultQuestionList(lat, lng);
 		}
 		else

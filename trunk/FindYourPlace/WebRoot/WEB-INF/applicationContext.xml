@@ -130,6 +130,9 @@
 		<property name="questionDao">
 			<ref bean="QuestionDao" />
 		</property>
+		<property name="googlemapDao">
+			<ref bean="GooglemapDao" />
+		</property>
 	</bean>
 	<bean id="GooglemapService" class="code.service.impl.GooglemapServiceImpl">
 		<property name="googlemapDao">
