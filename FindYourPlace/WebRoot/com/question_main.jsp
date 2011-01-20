@@ -37,22 +37,7 @@ function displayShowUI()
     var ui = document.getElementById("map_canvas");
     ui.style.display="block";
 }
-
-
 </script>
-
-
-
-  
-  
-  
-  
-  
-  
-  
-  
-	    
-  
 		<!--<s:a href="https://casserver:60462/cas/logout">退出</s:a>-->
 		<br>
 		<s:a href="/FindYourPlace/main.action">返回主页</s:a>
@@ -71,7 +56,19 @@ function displayShowUI()
 				<img src="UploadImages/<s:property value ="question.pictureURL" />" />
 				<br />
 			</div>
-		</s:if><br><br>
+		</s:if>
+	
+	<s:if test="%{question.googleMap!=null}">
+	<li>
+	<s:url id="url" action="showGooglemap">
+		<s:param name="mapId" value="%{question.googleMap.mapId}" />
+	</s:url>
+		<s:a href="%{url}" target="_blank">
+		查看地图
+		</s:a>
+	</li>
+	</s:if>
+		<br><br>
 	
 	<s:iterator id="id" value="answerList">
 	<s:label value="回答人：" /><s:property value="user.userName" /><br>
@@ -86,14 +83,16 @@ function displayShowUI()
 			</div>
 	</s:if>
 	
+	<li>
 	<s:url id="url" action="showGooglemap">
 		<s:param name="mapId" value="%{mapId}" />
 	</s:url>
-	<li>
-		<s:a href="%{url}">
+		<s:a href="%{url}" target="_blank">
 		查看地图
 		</s:a>
 	</li>
+	
+	<div id="map_c" style="width: 640px; height: 480px"></div>
 	
 	<br><br>
 	</s:iterator><br>
@@ -179,7 +178,7 @@ function displayShowUI()
 			document.getElementById("zoomLevel").value = map.getZoom();
 			document.getElementById("markArr").value = readarr();
 
-			document.getElementById("save").submit(); // 提交信息跳转页面
+			//document.getElementById("save").submit(); // 提交信息跳转页面
 		}
 		</script>
 		<center>

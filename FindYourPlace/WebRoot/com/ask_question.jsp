@@ -45,7 +45,7 @@ function displayShowUI()
 			<s:select name="question.type" label="问题类型" list="questionTypes"/>
 			<s:textfield name="question.reward" label="积分悬赏" value="0"/>	
    			<s:file name="upload" label="上传图片"/>
-   			
+	
    			
    			
    			
